@@ -27,8 +27,13 @@ Route::controller(AuthenticationController::class)->group(function() {
 });
 
 Route::controller(AdminController::class)->group(function() {
-    Route::get('/create-account', 'createAccountForm')->name('create-account');
+    Route::get('/accounts', 'accountList')->name('accounts');
+    Route::get('/accounts/create-account', 'createAccountForm')->name('create-account');
     Route::post('/create-account', 'createAccount')->name('create-account');
-    Route::get('/create-event', 'createMagazineForm')->name('create-event');
+
+    Route::get('/events', 'eventList')->name('events');
+    Route::get('/events/create-event', 'createMagazineForm')->name('create-event');
     Route::post('/create-event', 'createMagazine')->name('create-event');
+    Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
+    Route::post('/edit-event', 'editMagazine')->name('edit-event');
 });

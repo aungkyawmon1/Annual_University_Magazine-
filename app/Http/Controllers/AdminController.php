@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function accountList() {
+        $users = User::all();
+        return view('admin.accounts')->with("users", $users);
+    }
+
     public function createAccountForm() {
         if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
@@ -55,6 +60,12 @@ class AdminController extends Controller
         return redirect()->route('admin/accounts')->with('success','Account has been created successfully.');
     }
 
+
+    public function eventList() {
+        $events = AcademicYear::all();
+        return view('admin.events')->with("events", $events);
+    }
+
     public function createMagazineForm() {
         if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
@@ -76,5 +87,21 @@ class AdminController extends Controller
             'closureDate' => $request->closureDate
         ]);
         return redirect()->route('admin/events')->with('success','Magazine Event has been created successfully.');
+    }
+
+    public function editMagazineForm($id) {
+        if (!Auth::check()) {
+            return redirect("login")->withSuccess('You are not allowed to access');
+        }
+        $event = AcademicYear::find($id);
+        return view('admin.edit_event')->with("event", $event);
+    }
+
+    public function editMagazine(Request $request) {
+        if (!Auth::check()) {
+            return redirect("login")->withSuccess('You are not allowed to access');
+        }
+        AcademicYear::where("id", $request->id)->first()->update(array('title'=>$request->title, 'academicYear'=>$request->academicYear, 'closureDate'=>$request->closureDate));
+        return redirect()->route('events')->with('success', 'Magazine event updated successfully');
     }
 }
