@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(AuthenticationController::class)->group(function() {
+    Route::get('/login', 'loginView')->name('login');
+    Route::post('/login', 'login')->name('login');
+    Route::get('/register', 'registerView')->name('register');
+    Route::post('/register', 'register')->name('register');
+    Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::controller(AdminController::class)->group(function() {
+    Route::get('/create-account', 'createAccountForm')->name('create-account');
+    Route::post('/create-account', 'createAccount')->name('create-account');
+    Route::get('/create-event', 'createMagazineForm')->name('create-event');
+    Route::post('/create-event', 'createMagazine')->name('create-event');
 });
