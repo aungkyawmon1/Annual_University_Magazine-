@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Department;
 use App\Models\AcademicYear;
+use App\Models\AnnualEvent;
 use Hash;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -50,19 +51,19 @@ class AdminController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'email' => $request->email,
-            'contactNumber' => $request->contactNumber,
+            'contact_number' => $request->contact_number,
             'address' => $request->address,
-            'dateOfBirth' => $request->dateOfBirth,
+            'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
-            'roleId' => $request->roleId,
-            'departmentId' => $request->departmentId
+            'role_id' => $request->role_id,
+            'department_id' => $request->department_id
         ]);
         return redirect()->route('admin/accounts')->with('success','Account has been created successfully.');
     }
 
 
     public function eventList() {
-        $events = AcademicYear::all();
+        $events = AnnualEvent::all();
         return view('admin.events')->with("events", $events);
     }
 
@@ -72,19 +73,20 @@ class AdminController extends Controller
         }
         return view("admin.create_event");
     }
+
     public function createMagazine(Request $reques) {
         if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
         }
         $request->validate([
             'title' => 'required',
-            'academicYear' => 'required',
-            'closureDate' => 'required'
+            'academic_year' => 'required',
+            'closure_date' => 'required'
         ]);
-        AcademicYear::create([
+        AnnualEvent::create([
             'title' => $request->title,
-            'academicYear' => $request->academicYear,
-            'closureDate' => $request->closureDate
+            'academic_year' => $request->academic_year,
+            'closure_date' => $request->closure_date
         ]);
         return redirect()->route('admin/events')->with('success','Magazine Event has been created successfully.');
     }
@@ -93,7 +95,7 @@ class AdminController extends Controller
         if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
         }
-        $event = AcademicYear::find($id);
+        $event = AnnualEvent::find($id);
         return view('admin.edit_event')->with("event", $event);
     }
 
@@ -101,7 +103,7 @@ class AdminController extends Controller
         if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
         }
-        AcademicYear::where("id", $request->id)->first()->update(array('title'=>$request->title, 'academicYear'=>$request->academicYear, 'closureDate'=>$request->closureDate));
+        AnnualEvent::where("id", $request->id)->first()->update(array('title'=>$request->title, 'academic_year'=>$request->academic_year, 'closure_date'=>$request->closure_date));
         return redirect()->route('events')->with('success', 'Magazine event updated successfully');
     }
 }

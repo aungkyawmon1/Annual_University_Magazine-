@@ -23,23 +23,23 @@ class AuthenticationController extends Controller
         if(Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-            if(Auth::user()->roleId == 1) {
+            if(Auth::user()->role_id == 1) {
                 return redirect()->route('admin/dashboard')
                 ->withSuccess('You have successfully logged in!');
             }
-            else if(Auth::user()->roleId == 2) {
+            else if(Auth::user()->role_id == 2) {
                 return redirect()->route('manager/dashboard')
                 ->withSuccess('You have successfully logged in!');
             }
-            else if(Auth::user()->roleId == 3) {
+            else if(Auth::user()->role_id == 3) {
                 return redirect()->route('coordinator/dashboard')
                 ->withSuccess('You have successfully logged in!');
             }
-            else if(Auth::user()->roleId == 4) {
+            else if(Auth::user()->role_id == 4) {
                 return redirect()->route('student/dashboard')
                 ->withSuccess('You have successfully logged in!');
             }
-            else if(Auth::user()->roleId == 5) {
+            else if(Auth::user()->role_id == 5) {
                 return redirect()->route('guest/dashboard')
                 ->withSuccess('You have successfully logged in!');
             }
@@ -73,12 +73,12 @@ class AuthenticationController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'email' => $request->email,
-            'contactNumber' => $request->contactNumber,
+            'contact_number' => $request->contact_number,
             'address' => $request->address,
-            'dateOfBirth' => $request->dateOfBirth,
+            'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
-            'roleId' => 5,
-            'departmentId' => 0
+            'role_id' => 5,
+            'department_id' => 0
         ]);
         return redirect()->route('login')->with('success','Account has been created successfully.');
     }
