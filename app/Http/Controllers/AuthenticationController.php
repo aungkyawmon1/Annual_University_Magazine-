@@ -77,8 +77,8 @@ class AuthenticationController extends Controller
             'address' => $request->address,
             'dateOfBirth' => $request->dateOfBirth,
             'gender' => $request->gender,
-            'roleId' => $request->roleId,
-            'departmentId' => $request->departmentId
+            'roleId' => 5,
+            'departmentId' => 0
         ]);
         return redirect()->route('login')->with('success','Account has been created successfully.');
     }
