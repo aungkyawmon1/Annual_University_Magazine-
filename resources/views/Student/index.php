@@ -12,7 +12,7 @@
     <!-- bootstrap 5.3.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- custom css -->
-    <link href="../css/customTheme.css" rel="stylesheet">
+    <link href="./css/customTheme.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,10 +25,13 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">My contribution</a>
+                <a class="nav-link active" aria-current="page" href="#">Contributions</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Reports</a>
+                <a class="nav-link" href="./reports.html">Reports</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Guests</a>
               </li>
             </ul>
             <div class="d-flex gap-3">
@@ -68,9 +71,9 @@
                             <span class="post-info">4 Mar, 2024</span>
                             <span class="post-info">5 comments</span>
                         </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <button type="button" class="btn btn-outline">Preview </button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comments">
+                        <div class="d-flex justify-content-between mt-2 gap-3">
+                            <button type="button" class="btn btn-outline w-50">Preview </button>
+                            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
                                 <img src="img/Comment.svg" /> Comment
                             </button>
                         </div>
@@ -88,9 +91,9 @@
                             <span class="post-info">4 Mar, 2024</span>
                             <span class="post-info">5 comments</span>
                         </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <button type="button" class="btn btn-outline">Preview </button>
-                            <button type="button" class="btn btn-primary">
+                        <div class="d-flex justify-content-between mt-2 gap-3">
+                            <button type="button" class="btn btn-outline w-50">Preview </button>
+                            <button type="button" class="btn btn-primary w-50">
                                 <img src="img/Comment.svg" /> Comment
                             </button>
                         </div>
@@ -108,9 +111,9 @@
                             <span class="post-info">4 Mar, 2024</span>
                             <span class="post-info">5 comments</span>
                         </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <button type="button" class="btn btn-outline">Preview </button>
-                            <button type="button" class="btn btn-primary">
+                        <div class="d-flex justify-content-between mt-2 gap-3">
+                            <button type="button" class="btn btn-outline w-50">Preview </button>
+                            <button type="button" class="btn btn-primary w-50">
                                 <img src="img/Comment.svg" /> Comment
                             </button>
                         </div>
@@ -128,15 +131,15 @@
                             <span class="post-info">4 Mar, 2024</span>
                             <span class="post-info">5 comments</span>
                         </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <button type="button" class="btn btn-outline">Preview </button>
-                            <button type="button" class="btn btn-primary">
+                        <div class="d-flex justify-content-between mt-2 gap-3">
+                            <button type="button" class="btn btn-outline w-50">Preview </button>
+                            <button type="button" class="btn btn-primary w-50">
                                 <img src="img/Comment.svg" /> Comment
                             </button>
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
+                <!-- Article upload Modal -->
                 <div class="modal fade" id="upload_file" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -154,7 +157,7 @@
                             </div>
                             <div class="mb-4">
                                 <input type="file" id="actual-btn" hidden/>
-                                <label class="custom-file-upload" for="actual-btn" >
+                                <label class="custom-file-upload file" for="actual-btn" >
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload" /> <br>
                                     Upload photo
                                 </label>
@@ -163,16 +166,20 @@
                                 <!-- <label for="article-caption" class="form-label">Caption</label> -->
                                 <input type="email" class="form-control" id="article-caption" placeholder="Caption">
                             </div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" required>
+                                <label class="form-check-label" for="inlineCheckbox1">Agree <span class="blue-600">terms & conditions</span></label>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Upload</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Upload</button>
                         </div>
                     </div>
                     </div>
                 </div>
 
-                <!-- Modal -->
+                <!-- Comments Modal -->
                 <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
