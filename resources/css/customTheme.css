@@ -161,3 +161,46 @@ body{
 .my-table thead th {
     background-color: var(--gray-100);
   }
+
+.pagination{
+    gap: .5rem;
+    --bs-pagination-border-color: none;
+    --bs-pagination-border-radius: 8px;
+}
+
+.page-link{
+    border-radius: 8px;
+    min-width: 35px;
+    text-align: center;
+}
+
+.report-container{
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 1rem;
+}
+
+.report-color-1{
+    background-color: #BBF7D0;
+}
+
+.report-color-2{
+    background-color: #99F6E4;
+}
+
+.report-color-3{
+    background-color: #A5F3FC;
+}
+
+.report-color-4{
+    background-color: #DDD6FE;
+}
+
+#search{
+    background-image: url(../img/search-icon.svg);
+    background-repeat: no-repeat;
+    background-position: 12px 7px;
+    padding-left: 40px;
+    width: 300px;
+}

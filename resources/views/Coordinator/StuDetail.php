@@ -12,7 +12,7 @@
     <!-- bootstrap 5.3.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- custom css -->
-    <link href="../css/customTheme.css" rel="stylesheet">
+    <link href="../../css/customTheme.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,8 +35,8 @@
               </li>
             </ul>
             <div class="d-flex gap-3">
-              <button type="button" class="btn nav-btn btn-sm"><img src="./img/notification.svg" alt="notification"></button>
-              <button type="button" class="btn nav-btn btn-sm"><img src="./img/logout.svg" alt="logout"></button>
+              <button type="button" class="btn nav-btn btn-sm"><img src="../../img/notification.svg" alt="notification"></button>
+              <button type="button" class="btn nav-btn btn-sm"><img src="../../img/logout.svg" alt="logout"></button>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
         <h5 class="mt-3 gray-600">Information Science Department</h5>
 
         <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
-            <img src="./img/alert-circle.svg" alt="icon"/>
+            <img src="../../img/alert-circle.svg" alt="icon"/>
             <div>
               Closure date is <strong> 19 April, 2024</strong>
             </div>
@@ -64,7 +64,7 @@
                <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="./img/img1.png" alt="img">
+                            <img src="../../img/img1.png" alt="img">
                         </div>
                         <label class="mt-2 caption">
                             Caption for contribution
@@ -76,7 +76,7 @@
                         <div class="d-flex justify-content-between mt-2 gap-3">
                             <button type="button" class="btn btn-outline w-50">Preview </button>
                             <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
-                                <img src="img/Comment.svg" /> Comment
+                                <img src="../../img/Comment.svg" /> Comment
                             </button>
                         </div>
                         <div class="mt-2">
