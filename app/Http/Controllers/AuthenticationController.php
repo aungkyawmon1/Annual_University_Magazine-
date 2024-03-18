@@ -10,22 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
-    public function viewLogin() {
+    public function loginView() {
         return view('login');
     }
 
-    public function Login (Request $request) {
+    public function login (Request $request) {
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-
         if(Auth::attempt($credentials))
         {
             $request->session()->regenerate();
             if(Auth::user()->role_id == 1) {
-                return redirect()->route('admin/dashboard')
-                ->withSuccess('You have successfully logged in!');
+                return view('admin.dashboard');
+//                return redirect()->route('admin.dashboard')
+//                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 2) {
                 return redirect()->route('manager/dashboard')
@@ -44,6 +44,7 @@ class AuthenticationController extends Controller
                 ->withSuccess('You have successfully logged in!');
             }
         }
+
         return back()->withErrors([
             'error' => 'Your provided credentials do not match in our records.',
         ]);
@@ -61,14 +62,14 @@ class AuthenticationController extends Controller
         ]);
 
         $user = User::select('username')->where('email', $request->email)->first();
-        
+
         if($user != null) {
             return back()->withErrors([
                 'error' => 'Email already exist.',
             ]);
         }
         $request->password = Hash::make($request->password);
-        
+
         User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -84,6 +85,7 @@ class AuthenticationController extends Controller
     }
 
     public function logout() {
+        dd("logout");
         Session::flush();
         Auth::logout();
         return Redirect('login');

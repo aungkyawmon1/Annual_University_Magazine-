@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Department;
 use App\Models\AcademicYear;
 use App\Models\AnnualEvent;
+use Illuminate\Http\Request;
 use Hash;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -20,16 +21,18 @@ class AdminController extends Controller
     }
 
     public function createAccountForm() {
-        if (!Auth::check()) {
+//        if (!Auth::check()) {
+        if (false) { // fix later
             return redirect("login")->withSuccess('You are not allowed to access');
         }
         $roles = Role::all();
         $departments = Department::all();
-        return view('admin.create_account')->with("roles", $roles, "departments", $departments);
+        return view('admin.account_create')->with("roles", $roles, "departments", $departments);
     }
 
     public function createAccount(Request $request) {
-        if (!Auth::check()) {
+        if (false) { // fix later
+//        if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
         }
         $request->validate([
@@ -39,14 +42,14 @@ class AdminController extends Controller
         ]);
 
         $user = User::select('username')->where('email', $request->email)->first();
-        
+
         if($user != null) {
             return back()->withErrors([
                 'error' => 'Email already exist.',
             ]);
         }
-        $request->password = Hash::make($request->password);
-        
+//        $request->password = Hash::make($request->password);
+
         User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -58,7 +61,7 @@ class AdminController extends Controller
             'role_id' => $request->role_id,
             'department_id' => $request->department_id
         ]);
-        return redirect()->route('admin/accounts')->with('success','Account has been created successfully.');
+        return redirect()->route('accounts')->with('success','Account has been created successfully.');
     }
 
 

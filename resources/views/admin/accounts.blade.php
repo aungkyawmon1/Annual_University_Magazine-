@@ -40,7 +40,7 @@
       </nav>
     <div class="container">
         <div class="mt-3">
-            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#comments">
+            <button  onclick="window.location='/accounts/create-account'" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#comments">
                 <img src="../../img/Plus-icon.svg" class="me-3" />Create new account
             </button>
         </div>
@@ -61,7 +61,7 @@
                     </li>
                   </ul>
                   <div class="d-flex gap-3">
-                    <div class="mb-3">                        
+                    <div class="mb-3">
                         <input type="email" class="form-control" id="search" placeholder="Search name, email, phone">
                       </div>
                   </div>
@@ -125,9 +125,9 @@
             </nav>
           </div>
     </div>
-    
+
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-</html>  
+</html>
