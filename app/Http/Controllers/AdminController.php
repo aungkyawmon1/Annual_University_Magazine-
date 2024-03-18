@@ -16,7 +16,12 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function accountList() {
-        $users = User::all();
+        $users = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.id')// joining the contacts table , where user_id and contact_user_id are same
+            ->join('departments', 'users.department_id', '=', 'departments.id')
+            ->select('users.*', 'roles.name', 'departments.name')
+            ->get();
+        //$users = User::all();
         return view('admin.accounts')->with("users", $users);
     }
 

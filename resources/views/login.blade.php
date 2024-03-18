@@ -46,6 +46,9 @@
                             <label for="article-caption" class="form-label">Password</label>
                             <input type="password"  name = "password" class="form-control" id="article-caption" placeholder="Password">
                         </div>
+                        @if ($errors->has('error'))
+                                <span class="text-danger">{{ $errors->first('error') }}</span>
+                                @endif
                         <div class="mt-3">
                             <button type="submit"  name = "login_submit" class="btn btn-primary w-100">Login</button>
                         </div>
