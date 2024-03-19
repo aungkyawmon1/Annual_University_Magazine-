@@ -30,9 +30,6 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#">Reports</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Guests</a>
-              </li>
             </ul>
             <div class="d-flex gap-3">
               <button type="button" class="btn nav-btn btn-sm"><img src="../img/notification.svg" alt="notification"></button>

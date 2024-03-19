@@ -30,6 +30,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="./reports.html">Reports</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="./accounts.html">Accounts</a>
+              </li>
             </ul>
             <div class="d-flex gap-3">
               <button type="button" class="btn nav-btn btn-sm"><img src="../../img/notification.svg" alt="notification"></button>

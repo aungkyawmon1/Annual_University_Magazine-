@@ -28,10 +28,10 @@
                 <a class="nav-link" aria-current="page" href="#">Contributions</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Reports</a>
+                <a class="nav-link" href="#">Reports</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Guests</a>
+                <a class="nav-link active" href="#">Guests</a>
               </li>
             </ul>
             <div class="d-flex gap-3">

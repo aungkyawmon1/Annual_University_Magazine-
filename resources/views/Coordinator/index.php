@@ -28,6 +28,7 @@
                 <a class="nav-link active" aria-current="page" href="./index.html">Contributions</a>
               </li>
               <li class="nav-item me-3">
+                <a class="nav-link" href="#">Reports</a>
               </li>
               <li class="nav-item me-3">
                 <a class="nav-link" href="#">Guests</a>
