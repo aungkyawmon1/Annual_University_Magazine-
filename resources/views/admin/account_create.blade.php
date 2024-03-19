@@ -82,11 +82,11 @@
                 <div class="col-4">
                     <div class="mt-5">
                         <label for="article-caption" class="form-label">Phone</label>
-                        <input name = "contact_number" type="text" class="form-control" id="article-caption" placeholder="Phone">
+                        <input name = "contact_number" type="number" class="form-control" id="article-caption" placeholder="Phone">
                     </div>
                     <div class="mt-3">
                         <label for="article-caption" class="form-label">Address</label>
-                        <input name="address" type="password" class="form-control" id="article-caption" placeholder="Address">
+                        <input name="address" type="text" class="form-control" id="article-caption" placeholder="Address">
                     </div>
                     <div class="mt-3">
                         <label for="select" class="form-label">Gender</label>

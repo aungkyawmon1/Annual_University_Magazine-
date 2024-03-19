@@ -37,9 +37,10 @@
                             <label for="select" class="form-label">Choose faculty</label>
                             <select class="form-select" aria-label="Select">
                                 <option class="text-muted"  selected>Choose faculty</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="1">ICT</option>
+                                <option value="2">ECE</option>
+                                <option value="3">PRE</option>
+                                <option value="3">AME</option>
                               </select>
                         </div>
                         <div class="mt-3">

@@ -34,6 +34,16 @@
                             <input type="text"  name = "username" class="form-control" id="article-caption" placeholder="Username or ID">
                         </div>
                         <div class="mt-3">
+                            <label for="select" class="form-label">Choose faculty</label>
+                            <select class="form-select" aria-label="Select">
+                                <option class="text-muted"  selected>Choose faculty</option>
+                                <option value="1">ICT</option>
+                                <option value="2">ECE</option>
+                                <option value="3">PRE</option>
+                                <option value="3">AME</option>
+                              </select>
+                        </div>
+                        <div class="mt-3">
                             <label for="article-caption" class="form-label">Password</label>
                             <input type="password"  name = "password" class="form-control" id="article-caption" placeholder="Password">
                         </div>
@@ -42,9 +52,6 @@
                                 @endif
                         <div class="mt-3">
                             <button type="submit"  name = "login_submit" class="btn btn-primary w-100">Login</button>
-                        </div>
-                        <div class="mt-3">
-                            <p class="w-100 text-end blue-600"><a class="link">Register as guest?</a></p>
                         </div>
                     </form>
 
