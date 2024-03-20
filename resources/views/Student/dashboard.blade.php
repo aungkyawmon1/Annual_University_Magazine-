@@ -33,7 +33,7 @@
             </ul>
             <div class="d-flex gap-3">
                 <button type="button" class="btn nav-btn btn-sm"><img src="./img/notification.svg" alt="notification"></button>
-                <button type="button" class="btn nav-btn btn-sm"><img src="./img/logout.svg" alt="logout"></button>
+                <button type="button" onclick="window.location = 'logout'" class="btn nav-btn btn-sm"><img src="./img/logout.svg" alt="logout"></button>
             </div>
         </div>
     </div>

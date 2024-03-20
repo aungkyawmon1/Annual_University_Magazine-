@@ -91,7 +91,6 @@ class AuthenticationController extends Controller
     }
 
     public function logout() {
-        dd("logout");
         Session::flush();
         Auth::logout();
         return Redirect('login');
