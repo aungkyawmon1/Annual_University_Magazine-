@@ -45,3 +45,11 @@ Route::controller(StudentController::class)->group(function() {
     Route::get('/download/{filename}', 'download')->name('download');
     Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
 });
+
+Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(function () {
+    Route::get('/unpublished', [CoordinatorController::class, 'showUnpublished'])->name('unpublished');
+    Route::post('/publish/{id}', [CoordinatorController::class, 'publish'])->name('publish');
+    Route::get('/student-detail/{studentId}', [CoordinatorController::class, 'showDetail'])->name('student.detail');
+    //comment
+    Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
+});
