@@ -23,7 +23,9 @@ class AuthenticationController extends Controller
         {
             $request->session()->regenerate();
             if(Auth::user()->role_id == 1) {
-                return view('admin.dashboard');
+                return redirect()->route('magazines')
+                    ->withSuccess('You have successfully logged in!');
+//                return view('admin.dashboard');
 //                return redirect()->route('admin.dashboard')
 //                ->withSuccess('You have successfully logged in!');
             }
@@ -36,8 +38,12 @@ class AuthenticationController extends Controller
                 ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 4) {
-                return redirect()->route('student/dashboard')
-                ->withSuccess('You have successfully logged in!');
+                return redirect()->route('student-magazines')
+                    ->withSuccess('You have successfully logged in!');
+//                return view('student-magazines');
+//                return redirect()->route('student.dashboard');
+//                ->withSuccess('You have successfully logged in!')
+
             }
             else if(Auth::user()->role_id == 5) {
                 return redirect()->route('guest/dashboard')

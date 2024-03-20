@@ -33,6 +33,7 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/create-account', 'createAccount')->name('create-account');
 
     Route::get('/events', 'eventList')->name('events');
+    Route::get('/magazines', 'magazineList')->name('magazines');
     Route::get('/events/create-event', 'createMagazineForm')->name('create-event');
     Route::post('/create-event', 'createMagazine')->name('create-event');
     Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
@@ -42,4 +43,5 @@ Route::controller(AdminController::class)->group(function() {
 Route::controller(StudentController::class)->group(function() {
     Route::post('/upload', 'uploadMagazine')->name('upload');
     Route::get('/download/{filename}', 'download')->name('download');
+    Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
 });

@@ -85,47 +85,24 @@
                     </thead>
                     <tbody>
                     @if (count($users) > 0)
-            @foreach ($users as $cont)
-                <tr>
-                    <th>{{ $cont->id }}</th>
-                    <th>{{ $cont->username }}</th>
-                    <th>{{ $cont->role_id }}</th>
-                    <th>{{ $cont->department_id }}</th>
-                    <th>{{ $cont->address }}</th>
-                    <th><a href="/accounts/{{ $cont->id }}/edit" class="btn btn-primary">Edit</a>
-                        <a href="/delete/{{ $cont->id }}" class="btn btn-danger">Delete</a>
-                    </th>
-                </tr>
-            @endforeach
-        @else
-            <tr>
-                <th>No Data</th>
-            </tr>
-        @endif
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>Manager</td>
-                        <td>Information Science</td>
-                        <td>12 Dec 2023</td>
-                        <td class="text-end"><img src="../../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>Manager</td>
-                        <td>Information Science</td>
-                        <td>12 Dec 2023</td>
-                        <td class="text-end"><img src="../../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>Manager</td>
-                        <td>Information Science</td>
-                        <td>12 Dec 2023</td>
-                        <td class="text-end"><img src="../../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
+                        @foreach ($users as $cont)
+                            <tr>
+                                <th>{{ $cont->id }}</th>
+                                <th>{{ $cont->username }}</th>
+                                <th>{{ $cont->role_id }}</th>
+                                <th>{{ $cont->department_id }}</th>
+                                <th>{{ $cont->address }}</th>
+                                <th><a href="/accounts/{{ $cont->id }}/edit" class="btn btn-primary">Edit</a>
+                                    <a href="/delete/{{ $cont->id }}" class="btn btn-danger">Delete</a>
+                                </th>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <th>No Data</th>
+                        </tr>
+                    @endif
+
                     </tbody>
                 </table>
             </div>

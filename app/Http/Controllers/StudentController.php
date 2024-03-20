@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\Department;
 use App\Models\AcademicYear;
 use App\Models\AnnualEvent;
+use DB;
 use App\Models\Magazine;
 
 class StudentController extends Controller
@@ -44,8 +45,21 @@ class StudentController extends Controller
          'Content-lenght' => filesize($file),
          'filename' => $name,
         );
- 
+
      // auth code
      return Response::download($file, $name, $header);
+    }
+
+    public function getMagazinesByUserId($userId=1) {
+        $magazines = DB::table('magazine as m')
+            ->join('users as u', 'm.user_id', '=', 'u.id')
+            ->join('departments as d', 'm.department_id', '=', 'd.id')
+            ->leftJoin('comment as c', 'm.magazine_id', '=', 'c.magazine_id')
+            ->where('u.id', $userId)
+            ->where('c.status', 1)
+            ->select('m.user_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name as department_name', 'u.username', 'd.name', DB::raw('COUNT(c.comment_id) as comment_count'))
+            ->groupBy('m.user_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name', 'u.username', 'd.name')
+            ->get();
+        return view('student.dashboard')->with("magazines", $magazines);
     }
 }

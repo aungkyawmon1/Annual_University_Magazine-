@@ -10,6 +10,7 @@ use App\Models\AnnualEvent;
 use Illuminate\Http\Request;
 use Hash;
 use Session;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -24,6 +25,17 @@ class AdminController extends Controller
         //$users = User::all();
         return view('admin.accounts')->with("users", $users);
     }
+
+    public function magazineList() {
+        $magazines = DB::table('magazine')
+            ->join('users', 'magazine.user_id', '=', 'users.id')
+            ->join('departments', 'magazine.department_id', '=', 'departments.id')
+            ->select('magazine.user_id', 'magazine.department_id', 'magazine.title', 'magazine.description', 'magazine.image_url', 'magazine.file_url', 'magazine.created_at', 'departments.name as department_name', 'users.username')
+            ->get();
+
+        return view('admin.dashboard')->with("magazines", $magazines);
+    }
+
 
     public function createAccountForm() {
 //        if (!Auth::check()) {
