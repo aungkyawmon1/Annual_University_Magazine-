@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,9 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/create-event', 'createMagazine')->name('create-event');
     Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
     Route::post('/edit-event', 'editMagazine')->name('edit-event');
+});
+
+Route::controller(StudentController::class)->group(function() {
+    Route::post('/upload', 'uploadMagazine')->name('upload');
+    Route::get('/download/{filename}', 'download')->name('download');
 });

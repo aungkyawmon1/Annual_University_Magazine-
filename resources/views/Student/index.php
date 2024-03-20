@@ -144,16 +144,17 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Upload contribution</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="mb-4">
-                                <input type="file" id="actual-btn" hidden/>
+                                <input name="doc_file" type="file" id="actual-btn" hidden/>
                                 <label class="custom-file-upload file" for="actual-btn" >
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px;" alt="upload" /> <br>
                                     Upload contribution (docx, pdf)
                                 </label>
                             </div>
                             <div class="mb-4">
-                                <input type="file" id="actual-btn" hidden/>
+                                <input name="img_file" type="file" id="actual-btn" hidden/>
                                 <label class="custom-file-upload file" for="actual-btn" >
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload" /> <br>
                                     Upload photo
@@ -161,7 +162,7 @@
                             </div>
                             <div class="mb-3">
                                 <!-- <label for="article-caption" class="form-label">Caption</label> -->
-                                <input type="email" class="form-control" id="article-caption" placeholder="Caption">
+                                <input type="text" name="title" class="form-control" id="article-caption" placeholder="Caption">
                             </div>
                             <div class="form-check form-check-inline mb-3">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" required>
@@ -170,8 +171,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Upload</button>
+                            <button type="submit" class="btn btn-primary">Upload</button>
                         </div>
+                        </form>
                     </div>
                     </div>
                 </div>
