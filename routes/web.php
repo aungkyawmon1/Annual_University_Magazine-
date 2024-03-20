@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\StudentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +17,11 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
 });
 
 Route::controller(AuthenticationController::class)->group(function() {
-    Route::get('/login', 'loginView')->name('login');
+    Route::get('/login', 'loginView')->name('login.view');
     Route::post('/login', 'login')->name('login');
     Route::get('/register', 'registerView')->name('register');
     Route::post('/register', 'register')->name('register');
@@ -33,19 +34,17 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/create-account', 'createAccount')->name('create-account');
 
     Route::get('/events', 'eventList')->name('events');
-    Route::get('/magazines', 'magazineList')->name('magazines');
     Route::get('/events/create-event', 'createMagazineForm')->name('create-event');
     Route::post('/create-event', 'createMagazine')->name('create-event');
     Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
     Route::post('/edit-event', 'editMagazine')->name('edit-event');
 });
 
-Route::controller(StudentController::class)->group(function() {
-    Route::post('/upload', 'uploadMagazine')->name('upload');
-    Route::get('/download/{filename}', 'download')->name('download');
-    Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
-});
 
+
+
+
+// coordinator routes
 Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(function () {
     Route::get('/unpublished', [CoordinatorController::class, 'showUnpublished'])->name('unpublished');
     Route::post('/publish/{id}', [CoordinatorController::class, 'publish'])->name('publish');
