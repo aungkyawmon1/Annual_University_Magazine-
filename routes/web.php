@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::controller(AuthenticationController::class)->group(function() {
@@ -34,15 +34,19 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/create-account', 'createAccount')->name('create-account');
 
     Route::get('/events', 'eventList')->name('events');
+    Route::get('/magazines', 'magazineList')->name('magazines');
+    Route::get('/guests', 'guestList')->name('guests');
     Route::get('/events/create-event', 'createMagazineForm')->name('create-event');
     Route::post('/create-event', 'createMagazine')->name('create-event');
     Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
     Route::post('/edit-event', 'editMagazine')->name('edit-event');
 });
 
-
-
-
+Route::controller(StudentController::class)->group(function() {
+    Route::post('/upload', 'uploadMagazine')->name('upload');
+    Route::get('/download/{filename}', 'download')->name('download');
+    Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
+});
 
 // coordinator routes
 Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(function () {

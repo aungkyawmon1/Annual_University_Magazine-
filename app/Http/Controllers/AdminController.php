@@ -35,6 +35,13 @@ class AdminController extends Controller
 
         return view('admin.dashboard')->with("magazines", $magazines);
     }
+    public function guestList() {
+        $guests = DB::table('users')
+            ->select('username', 'created_at', 'updated_at')
+            ->where('role_id', 5)
+            ->get();
+        return view('coordinator.guests')->with("guests", $guests);
+    }
 
 
     public function createAccountForm() {
