@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
+    <link rel="icon" type="image/x-icon" href="../../img/logo.jpg">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +21,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-md-7 d-none d-md-block">
                 <div class="image_container">
-                    <img src="./img/UniversityImage.png" />
+                    <img src="{{ asset('img/UniversityImage.png') }}" alt="img"/>
                 </div>
             </div>
             <div class="col-12 col-md-5">
