@@ -25,7 +25,10 @@ Route::controller(AuthenticationController::class)->group(function() {
     Route::post('/login', 'login')->name('login');
     Route::get('/register', 'registerView')->name('register');
     Route::post('/register', 'register')->name('register');
+    Route::get('/guestLogin', 'guestLoginView');
+    Route::post('/guest-login', 'guestLogin')->name('guest-login');
     Route::get('/logout', 'logout')->name('logout');
+    Route::get('/guestLogout', 'guestLogout')->name('guestLogout');
 });
 
 Route::controller(AdminController::class)->group(function() {
@@ -55,4 +58,8 @@ Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(
     Route::get('/student-detail/{studentId}', [CoordinatorController::class, 'showDetail'])->name('student.detail');
     //comment
     Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
+});
+
+Route::controller(StudentController::class)->group(function() {
+    Route::get('/publish', 'publishedList')->name('publish');
 });

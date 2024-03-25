@@ -45,7 +45,7 @@
                             <button type="submit"  name = "login_submit" class="btn btn-primary w-100">Login</button>
                         </div>
                         <div class="mt-3">
-                            <p class="w-100 text-end blue-600"><a class="link">Register as guest?</a></p>
+                            <p class="w-100 text-end blue-600"><a href="/register" class="link">Register as guest?</a></p>
                         </div>
                     </form>
 

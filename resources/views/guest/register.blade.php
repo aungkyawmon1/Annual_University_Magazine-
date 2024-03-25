@@ -28,7 +28,7 @@
                 <div class="form-container p-5">
                     <h1>Welcome!</h1>
                     <p class="text-muted">Login to your account.</p>
-                    <form method ="post" action="{{ route('login') }}"  id ="form-id">
+                    <form method ="post" action="{{ route('register') }}"  id ="form-id">
                         @csrf
                         <div class="mt-5">
                             <label for="article-caption" class="form-label">Username</label>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="mt-3">
                             <label for="select" class="form-label">Choose faculty</label>
-                            <select class="form-select" aria-label="Select">
+                            <select class="form-select" name="department_id" aria-label="Select">
                                 <option class="text-muted"  selected>Choose faculty</option>
                                 <option value="1">ICT</option>
                                 <option value="2">ECE</option>
