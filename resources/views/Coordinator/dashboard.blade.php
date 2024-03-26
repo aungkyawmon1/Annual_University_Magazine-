@@ -17,104 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand mr-5" href="#"><img src="../../img/logo.jpg" style="width: 64px; height: 64px;" /></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item me-3">
-                <a class="nav-link active" aria-current="page" href="./index.html">Contributions</a>
-              </li>
-              <li class="nav-item me-3">
-                <a class="nav-link" href="#">Reports</a>
-              </li>
-              <li class="nav-item me-3">
-                <a class="nav-link" href="#">Guests</a>
-              </li>
-            </ul>
-            <div class="d-flex gap-3">
-            <div class="position-relative">
-                    <button type="button" class="btn nav-btn btn-sm" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                        <img src="../../img/notification.svg" alt="notification">
-                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                            <span class="visually-hidden">New alerts</span>
-                        </span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end noti-dropdown shadow-sm">
-                        <h1 class="modal-title fs-5 mb-3" id="exampleModalLabel">Notifications</h1>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> uploaded a new contribution.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> uploaded a new contribution.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                        <div class="noti-content">
-                            <img src="../../img/notification.svg" alt="icon" />
-                            <div class="noti-info">
-                                <span><strong>John Cooper</strong> registerd as guest.</span>
-                                <small>2 mins ago.</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              <button type="button" class="btn nav-btn btn-sm"><img src="../../img/logout.svg" alt="logout"></button>
-            </div>
-          </div>
-        </div>
-      </nav>
+
 
     <div class="container">
         <h3 class="mt-3">Magazine contribution for 2023-2024 Academic Year</h3>
@@ -200,7 +103,7 @@
       </nav>
     </div>
 
-    
+
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

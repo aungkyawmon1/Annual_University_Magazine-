@@ -88,7 +88,9 @@ class AuthenticationController extends Controller
             'role_id' => 5,
             'department_id' => $request->department_id
         ]);
-        return redirect()->route('guestLogin')->with('success','Account has been created successfully.');
+//        return view('guest.index');
+        return redirect()->route('guests');
+//        return redirect()->route('guestLogin')->with('success','Account has been created successfully.');
     }
 
     public function guestLogin (Request $request) {
@@ -96,11 +98,11 @@ class AuthenticationController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-    
+
         if(Auth::attempt($credentials))
         {
             $department_id = $request->department_id;
-            
+
             $guests = DB::table('users')
             ->select('*')
             ->where('department_id', $department_id)
@@ -113,7 +115,7 @@ class AuthenticationController extends Controller
             ->join('departments', 'magazines.department_id', '=', 'departments.id')
             ->join('users', 'magazines.user_id', '=', 'users.id')
             ->where('is_published', true)
-            ->select('magazines.user_id', 'magazines.department_id', 'magazines.title', 'magazines.description', 'magazines.image_url', 'magazines.file_url', 'magazines.created_at', 'departments.name as department_name', 'users.username')
+            ->select('magazines.id','magazines.user_id', 'magazines.department_id', 'magazines.title', 'magazines.description', 'magazines.image_url', 'magazines.file_url', 'magazines.created_at', 'departments.name as department_name', 'users.username')
             ->get();
             $request->session()->regenerate();
             return view('guest.index')->with("magazines", $magazines);

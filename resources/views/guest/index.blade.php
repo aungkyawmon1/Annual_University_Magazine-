@@ -17,28 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand mr-5" href="#"><img src="../../img/logo.jpg" style="width: 64px; height: 64px;" /></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Contributions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./reports.html">Reports</a>
-              </li>
-            </ul>
-            <div class="d-flex gap-3">
-              <button type="button" class="btn nav-btn btn-sm"><img src="../../img/notification.svg" alt="notification"></button>
-              <button type="button" class="btn nav-btn btn-sm" onclick="window.location = 'guestLogout'"><img src="../../img/logout.svg" alt="logout"></button>
-            </div>
-          </div>
-        </div>
-      </nav>
+@include('partials._header')
     <div class="container">
         <h3 class="mt-3">Magazine contribution for 2023-2024 Academic Year</h3>
 
@@ -51,24 +30,46 @@
 
         <div class="row mt-4">
             <h5 class="mb-3">Published contributions</h5>
-               <div class="col-12 col-md-4 col-lg-3 mb-4">
+            @foreach ($magazines as $cont)
+            <div class="col-12 col-md-4 col-lg-3 mb-4">
+                    <div class="post-container">
+                        <div class="img-container">
+                            <img src="../../img/img1.png" alt="img">
+                        </div>
+                        <label class="mt-2 caption">
+                            {{$cont->title}}
+                        </label>
+                        <div class="d-flex flex-column mt-2">
+                            <strong>{{$cont->username}}</strong>
+                            <div class="d-flex justify-content-between">
+                                <span class="post-info">{{$cont->department_name}}</span>
+                                <span class="post-info">{{$cont->created_at}}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2 gap-3">
+                            <button type="button" class="btn btn-outline w-100" onclick="window.location = 'preview'"><a href="/preview/{{ $cont->id }}" class="btn btn-primary">Preview </a></button>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+                <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
                             <img src="../../img/img1.png" alt="img">
                         </div>
                         <label class="mt-2 caption">
                             Caption for contribution
-                        </label>                    
+                        </label>
                         <div class="d-flex flex-column mt-2">
                             <strong>John Cooper</strong>
                             <div class="d-flex justify-content-between">
                                 <span class="post-info">Information Science</span>
                                 <span class="post-info">4 Mar, 2024</span>
-                            </div>                            
+                            </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
                             <button type="button" class="btn btn-outline w-100">Preview </button>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -79,44 +80,23 @@
                         </div>
                         <label class="mt-2 caption">
                             Caption for contribution
-                        </label>                    
+                        </label>
                         <div class="d-flex flex-column mt-2">
                             <strong>John Cooper</strong>
                             <div class="d-flex justify-content-between">
                                 <span class="post-info">Information Science</span>
                                 <span class="post-info">4 Mar, 2024</span>
-                            </div>                            
+                            </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
                             <button type="button" class="btn btn-outline w-100">Preview </button>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
-                    <div class="post-container">
-                        <div class="img-container">
-                            <img src="../../img/img1.png" alt="img">
-                        </div>
-                        <label class="mt-2 caption">
-                            Caption for contribution
-                        </label>                    
-                        <div class="d-flex flex-column mt-2">
-                            <strong>John Cooper</strong>
-                            <div class="d-flex justify-content-between">
-                                <span class="post-info">Information Science</span>
-                                <span class="post-info">4 Mar, 2024</span>
-                            </div>                            
-                        </div>
-                        <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-100">Preview </button>
-                            
+
                         </div>
                     </div>
                 </div>
         </div>
     </div>
-    
+
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

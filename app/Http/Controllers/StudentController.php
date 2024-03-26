@@ -62,4 +62,13 @@ class StudentController extends Controller
             ->get();
         return view('student.dashboard')->with("magazines", $magazines);
     }
+
+    public function preview($id) {
+        $magazine = DB::table('magazine')
+            ->where('magazine.magazine_id', $id)
+            ->select('*')
+            ->get()->first();
+            //dd($magazine);
+        return view('student.preview-pdf')->with('magazine', $magazine);
+    }
 }

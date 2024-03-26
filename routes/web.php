@@ -50,6 +50,7 @@ Route::controller(StudentController::class)->group(function() {
     Route::post('/upload', 'uploadMagazine')->name('upload');
     Route::get('/download/{filename}', 'download')->name('download');
     Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
+    Route::get('/magazine-preview', 'getMagazinesByUserId')->name('student-magazines');
 });
 
 // Coordinator routes
@@ -67,5 +68,7 @@ Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(
 
 Route::controller(StudentController::class)->group(function() {
     Route::get('/publish', 'publishedList')->name('publish');
+    //Route::get('/preview', 'preview')->name('preview');
+    Route::get('/preview/{id}', 'preview')->name('preview');
 });
 

@@ -30,7 +30,7 @@ class AdminController extends Controller
         $magazines = DB::table('magazine')
             ->join('users', 'magazine.user_id', '=', 'users.id')
             ->join('departments', 'magazine.department_id', '=', 'departments.id')
-            ->select('magazine.user_id', 'magazine.department_id', 'magazine.title', 'magazine.description', 'magazine.image_url', 'magazine.file_url', 'magazine.created_at', 'departments.name as department_name', 'users.username')
+            ->select('magazine.user_id', 'magazine.magazine_id','magazine.department_id', 'magazine.title', 'magazine.description', 'magazine.image_url', 'magazine.file_url', 'magazine.created_at', 'departments.name as department_name', 'users.username')
             ->get();
 
         return view('admin.dashboard')->with("magazines", $magazines);

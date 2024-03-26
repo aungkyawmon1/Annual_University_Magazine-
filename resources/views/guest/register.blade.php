@@ -27,7 +27,7 @@
             <div class="col-12 col-md-5">
                 <div class="form-container p-5">
                     <h1>Welcome!</h1>
-                    <p class="text-muted">Login to your account.</p>
+                    <p class="text-muted">Register to your account.</p>
                     <form method ="post" action="{{ route('register') }}"  id ="form-id">
                         @csrf
                         <div class="mt-5">
@@ -36,9 +36,9 @@
                         </div>
                         <div class="mt-3">
                             <label for="select" class="form-label">Choose faculty</label>
-                            <select class="form-select" name="department_id" aria-label="Select">
+                            <select  class="form-select" name="department_id" aria-label="Select" required>
                                 <option class="text-muted"  selected>Choose faculty</option>
-                                <option value="1">ICT</option>
+                                <option value="1" selected>ICT</option>
                                 <option value="2">ECE</option>
                                 <option value="3">PRE</option>
                                 <option value="3">AME</option>
@@ -52,7 +52,7 @@
                                 <span class="text-danger">{{ $errors->first('error') }}</span>
                                 @endif
                         <div class="mt-3">
-                            <button type="submit"  name = "login_submit" class="btn btn-primary w-100">Login</button>
+                            <button type="submit"  name = "login_submit" class="btn btn-primary w-100">Register</button>
                         </div>
                     </form>
 
@@ -61,7 +61,6 @@
             </div>
         </div>
     </div>
-
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
