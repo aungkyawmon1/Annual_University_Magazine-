@@ -7,29 +7,56 @@ use App\Models\Role;
 use App\Models\Department;
 use App\Models\AcademicYear;
 use App\Models\AnnualEvent;
+use Illuminate\Http\Request;
 use Hash;
 use Session;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 
 class AdminController extends Controller
 {
     public function accountList() {
-        $users = User::all();
+        $users = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.id')// joining the contacts table , where user_id and contact_user_id are same
+            ->join('departments', 'users.department_id', '=', 'departments.id')
+            ->select('users.*', 'roles.name', 'departments.name')
+            ->get();
+        //$users = User::all();
         return view('admin.accounts')->with("users", $users);
     }
 
+    public function magazineList() {
+        $magazines = DB::table('magazine')
+            ->join('users', 'magazine.user_id', '=', 'users.id')
+            ->join('departments', 'magazine.department_id', '=', 'departments.id')
+            ->select('magazine.user_id', 'magazine.department_id', 'magazine.title', 'magazine.description', 'magazine.image_url', 'magazine.file_url', 'magazine.created_at', 'departments.name as department_name', 'users.username')
+            ->get();
+
+        return view('admin.dashboard')->with("magazines", $magazines);
+    }
+    public function guestList() {
+        $guests = DB::table('users')
+            ->select('username', 'created_at', 'updated_at')
+            ->where('role_id', 5)
+            ->get();
+        return view('coordinator.guests')->with("guests", $guests);
+    }
+
+
     public function createAccountForm() {
-        if (!Auth::check()) {
+//        if (!Auth::check()) {
+        if (false) { // fix later
             return redirect("login")->withSuccess('You are not allowed to access');
         }
         $roles = Role::all();
         $departments = Department::all();
-        return view('admin.create_account')->with("roles", $roles, "departments", $departments);
+        return view('admin.account_create')->with("roles", $roles, "departments", $departments);
     }
 
     public function createAccount(Request $request) {
-        if (!Auth::check()) {
+        if (false) { // fix later
+//        if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
         }
         $request->validate([
@@ -39,14 +66,14 @@ class AdminController extends Controller
         ]);
 
         $user = User::select('username')->where('email', $request->email)->first();
-        
+
         if($user != null) {
             return back()->withErrors([
                 'error' => 'Email already exist.',
             ]);
         }
-        $request->password = Hash::make($request->password);
-        
+//        $request->password = Hash::make($request->password);
+
         User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -58,7 +85,7 @@ class AdminController extends Controller
             'role_id' => $request->role_id,
             'department_id' => $request->department_id
         ]);
-        return redirect()->route('admin/accounts')->with('success','Account has been created successfully.');
+        return redirect()->route('accounts')->with('success','Account has been created successfully.');
     }
 
 
