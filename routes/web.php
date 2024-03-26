@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,4 +63,6 @@ Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(
 
 Route::controller(StudentController::class)->group(function() {
     Route::get('/publish', 'publishedList')->name('publish');
+    //Route::get('/preview', 'preview')->name('preview');
+    Route::get('/preview/{id}', 'preview')->name('preview');
 });
