@@ -50,6 +50,7 @@ Route::controller(StudentController::class)->group(function() {
     Route::post('/upload', 'uploadMagazine')->name('upload');
     Route::get('/download/{filename}', 'download')->name('download');
     Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
+    Route::get('/magazine-preview', 'getMagazinesByUserId')->name('student-magazines');
 });
 
 // coordinator routes

@@ -18,13 +18,13 @@
 <body>
     <!-- <iframe src="file:///C:/Users/Htet Lin Aung/Desktop/Ewsd test/img/Medical-record.pdf" style="width:100%; height:600px;" type="application/pdf" frameborder="0"></iframe> -->
     <!-- <embed src="https://www.orimi.com/pdf-test.pdf" type="application/pdf" width="100%" height="600px" /> -->
-    
-    
+
+
     <div class="container">
         <div class="row mt-3">
             <div class="col-12 col-md-4">
                 <div class="">
-                    <img class="img-fluid" src="{{ asset('storage/uploads/'.$magazine->img_url) }}" alt="Uni Img" />
+                    <img class="img-fluid" src="{{ asset('img/'.$magazine->image_url) }}" alt="Uni Img" />
                     <label class="mt-2 caption">
                         {{$magazine->title}}
                     </label>
@@ -45,13 +45,13 @@
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+
     <script src="{{ asset('dist/pspdfkit.js') }}"></script>
     <script>
         PSPDFKit.load({
             licenseKey: '5c-CTDxZCVH0Mdt5p0qv1AM1JAt3Z5g_R50JXxo-oipYbpN_6oLWZhqdeTwrnWK54vzPmhrL-WHKPxuaBatUBuacyOumrQOdc7aLnh0zkUGWQNns1Enshq8-hTLHNwSwBYjnckUTqQzqtYb8aWvXCFI7qRg5jTzlu3iPslqagkM7mNDsbzDsszKh_VAYxpJtkurPIyECcOVqxg',
             container: '#pspdfkit',
-            document: "{{ asset('storage/uploads/'.$magazine->file_url) }}", // Add the path to your document here.
+            document: "{{ asset('img/'.$magazine->file_url) }}", // Add the path to your document here.
             // disableToolbar: true,
             toolbarItems: [
                              { type: "sidebar-thumbnails" },
@@ -61,7 +61,7 @@
                             { type: "zoom-out" },
                             { type: "zoom-in" },
                         ],
-        
+
         })
             .then(function (instance) {
                 console.log('PSPDFKit loaded', instance);

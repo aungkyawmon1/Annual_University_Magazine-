@@ -57,15 +57,15 @@ class StudentController extends Controller
             ->leftJoin('comment as c', 'm.magazine_id', '=', 'c.magazine_id')
             ->where('u.id', $userId)
             ->where('c.status', 1)
-            ->select('m.user_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name as department_name', 'u.username', 'd.name', DB::raw('COUNT(c.comment_id) as comment_count'))
+            ->select('m.user_id','m.magazine_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name as department_name', 'u.username', 'd.name', DB::raw('COUNT(c.comment_id) as comment_count'))
             ->groupBy('m.user_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name', 'u.username', 'd.name')
             ->get();
         return view('student.dashboard')->with("magazines", $magazines);
     }
 
     public function preview($id) {
-        $magazine = DB::table('magazines')
-            ->where('magazines.id', $id)
+        $magazine = DB::table('magazine')
+            ->where('magazine.magazine_id', $id)
             ->select('*')
             ->get()->first();
             //dd($magazine);
