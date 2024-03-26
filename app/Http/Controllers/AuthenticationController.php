@@ -31,8 +31,9 @@ class AuthenticationController extends Controller
 //                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 2) {
-                return redirect()->route('manager/dashboard')
-                ->withSuccess('You have successfully logged in!');
+                return view('manager.dashboard');
+//                return redirect()->route('manager/dashboard')
+//                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 3) {
                 return view('coordinator.dashboard');
