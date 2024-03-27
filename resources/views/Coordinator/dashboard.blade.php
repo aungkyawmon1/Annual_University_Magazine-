@@ -17,7 +17,8 @@
 </head>
 
 <body>
-@include('partials._header')
+
+
     <div class="container">
         <h3 class="mt-3">Magazine contribution for 2023-2024 Academic Year</h3>
         <h5 class="mt-3 gray-600">Information Science Department</h5>
@@ -31,24 +32,23 @@
 
         <div class="row mt-4 d-flex flex-row justify-content-between">
             <div class="d-flex flex-row align-items-center justify-content-between">
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                      <a class="nav-link activeWhite" aria-current="page" href="#">All</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Published</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Unpublished</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" aria-disabled="true">Not view</a>
-                    </li>
-                  </ul>
+
+              <ul class="nav nav-pills">
+                {{-- <li class="nav-item">
+                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'all']) }}">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'published']) }}">Published</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'unpublished']) }}">Unpublished</a>
+                </li> --}}
+            </ul>
+            
+
                   <div class="d-flex gap-3">
-                    <span>23 Students</span>
-                    <img src="../../img/Ellipse 2.svg" />
-                    <span>30 Contributions</span>
+                    <span>{{ $studentCount }} Students</span>
+                    <span>{{ $contributionCount }} Contributions</span>
                   </div>
             </div>
         </div>
@@ -67,30 +67,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>22 Oct 2023</td>
-                        <td>Published</td>
-                        <td>34 views</td>
-                        <td class="text-end"><img src="../../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>22 Oct 2023</td>
-                        <td>Unpublished</td>
-                        <td>34 views</td>
-                        <td class="text-end"><img src="../../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>22 Oct 2023</td>
-                        <td>Published</td>
-                        <td>34 views</td>
-                        <td class="text-end"><img src="../../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
+                      @foreach($magazines as $index => $magazine)
+                        <tr>
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ $magazine->user->first_name }} {{ $magazine->user->last_name }}</td>
+                            <td>{{ $magazine->updated_at->format('d M Y') }}</td>
+                            <td>{{ $magazine->is_published ? 'Published' : 'Unpublished' }}</td>
+                            <td>{{ $magazine->View }} views</td>
+                            <td class="text-end">
+                              <a href="{{ route('coordinator.student.detail', ['magazineId' => $magazine->magazine_id]) }}">
+                                <img src="{{ asset('img/arrow-right.svg') }}" alt="arrow-right">
+                            </a>
+                            
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

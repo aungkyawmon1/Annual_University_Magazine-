@@ -131,7 +131,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Faculty</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Student name</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ $magazine->user->first_name }} {{ $magazine->user->last_name }}</li>
                 </ol>
               </nav>
         </div>
@@ -140,18 +140,19 @@
                <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="../../img/img1.png" alt="img">
+                            <img src="{{ asset('storage/' . $magazine->image_url) }}" alt="Magazine Image">
                         </div>
                         <label class="mt-2 caption">
-                            Caption for contribution
+                            {{ $magazine->title }}
                         </label>
                         <div class="d-flex justify-content-between mt-2">
-                            <span class="post-info">4 Mar, 2024</span>
-                            <span class="post-info">5 comments</span>
+                            <span class="post-info">{{ $publishDate }}</span>
+                            <span class="post-info"> 0 comments</span>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-50">Preview </button>
-                            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
+                            <a href="{{ route('magazine.preview', ['magazine' => $magazine->id]) }}" class="btn btn-outline w-50">Preview</a>
+
+                                <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
                                 <img src="../../img/Comment.svg" /> Comment
                             </button>
                         </div>
