@@ -18,4 +18,5 @@ public function magazine()
     return $this->belongsTo(Magazine::class); 
 }
 
+
 }
