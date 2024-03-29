@@ -111,15 +111,17 @@ class AuthenticationController extends Controller
             //->where('password', Hash::make($request->password))
             ->get();
             if($guests) {
-                $magazines = DB::table('magazines')
+                /*$magazines = DB::table('magazines')
             ->where('magazines.department_id', $department_id)
             ->join('departments', 'magazines.department_id', '=', 'departments.id')
             ->join('users', 'magazines.user_id', '=', 'users.id')
             ->where('is_published', true)
             ->select('magazines.id','magazines.user_id', 'magazines.department_id', 'magazines.title', 'magazines.description', 'magazines.image_url', 'magazines.file_url', 'magazines.created_at', 'departments.name as department_name', 'users.username')
-            ->get();
+            ->get();*/
             $request->session()->regenerate();
-            return view('guest.index')->with("magazines", $magazines);
+            //return redirect()->route('guest'. $department_id);
+            return Redirect::to('guest/'.$department_id);
+            //return view('guest.index')->with("magazines", $magazines);
             /*return redirect()->route('publish')
                     ->withSuccess('You have successfully logged in!');
 //                return view('admin.dashboard');*/
@@ -132,6 +134,7 @@ class AuthenticationController extends Controller
         ]);
     }
     }
+    
     public function logout() {
         Session::flush();
         Auth::logout();

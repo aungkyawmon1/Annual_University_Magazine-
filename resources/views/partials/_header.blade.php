@@ -18,7 +18,7 @@
             </ul>
             <div class="d-flex gap-3">
                 <button type="button" class="btn nav-btn btn-sm"><img src="../../img/notification.svg" alt="notification"></button>
-                <button type="button" class="btn nav-btn btn-sm"><img src="../../img/logout.svg" alt="logout"></button>
+                <button type="button" class="btn nav-btn btn-sm"><a class="nav-link" href="{{ route('logout') }}"><img src="../../img/logout.svg" alt="logout"></a></button>
             </div>
         </div>
     </div>

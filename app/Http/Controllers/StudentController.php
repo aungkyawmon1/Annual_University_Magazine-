@@ -17,7 +17,7 @@ class StudentController extends Controller
         $file = $request->file('img_file');
         $file1 = $request->file('doc_file');
         $user_id = auth()->user()->id;
-        $department_id = auth()->user()->id;
+        $department_id = auth()->user()->department_id;
         $filename = $file->getClientOriginalName();
         $filename1 = $file1->getClientOriginalName();
         $file->storeAs('public/uploads', $filename);

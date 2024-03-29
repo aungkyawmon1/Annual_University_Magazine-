@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-100" onclick="window.location = 'preview'"><a href="/preview/{{ $cont->id }}" class="btn btn-primary">Preview </a></button>
+                        <button type="button" class="btn btn-outline w-100"><a href="/preview/{{ $cont->id }}">Preview </a></button>
                         </div>
                     </div>
                 </div>
