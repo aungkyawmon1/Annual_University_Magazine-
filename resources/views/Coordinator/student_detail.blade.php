@@ -152,12 +152,15 @@
                         <div class="d-flex justify-content-between mt-2 gap-3">
                             <a href="{{ route('magazine.preview', ['magazine' => $magazine->id]) }}" class="btn btn-outline w-50">Preview</a>
 
-                                <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
+                                <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#commentsModal">
                                 <img src="../../img/Comment.svg" /> Comment
                             </button>
                         </div>
                         <div class="mt-2">
-                            <button type="button" class="btn btn-primary w-100">Publish </button>
+                           <form action="{{ url('/publishMagazine/' . $magazine->id) }}" method="POST">
+        @csrf <!-- CSRF token for security -->
+        <button type="submit" class="btn btn-primary w-100">Publish</button>
+    </form>
                         </div>
                     </div>
                 </div>

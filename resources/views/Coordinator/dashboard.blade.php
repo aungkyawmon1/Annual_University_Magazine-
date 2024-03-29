@@ -34,7 +34,7 @@
             <div class="d-flex flex-row align-items-center justify-content-between">
 
               <ul class="nav nav-pills">
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'all']) }}">All</a>
                 </li>
                 <li class="nav-item">
@@ -42,7 +42,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'unpublished']) }}">Unpublished</a>
-                </li> --}}
+                </li>
             </ul>
             
 

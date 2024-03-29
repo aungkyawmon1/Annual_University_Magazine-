@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Magazine;
-use App\Models\Comment;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Magazine;
+use App\Models\AcademicYear;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CoordinatorController extends Controller
@@ -24,8 +25,11 @@ class CoordinatorController extends Controller
             $magazines = $this->getMagazinesQuery($departmentId, $filter)->get();
             $studentCount = $magazines->groupBy('user_id')->count();
             $contributionCount = $magazines->count();
+
+            $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
+        $closureDate = $currentAcademicYear ? $currentAcademicYear->ClosureDate : null;
     
-            return view('Coordinator.dashboard', compact('magazines', 'studentCount', 'contributionCount', 'filter'));
+            return view('Coordinator.dashboard', compact('magazines', 'studentCount', 'contributionCount', 'filter','closureDate'));
         }
 
        
