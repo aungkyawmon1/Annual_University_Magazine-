@@ -10,6 +10,8 @@ use App\Models\AcademicYear;
 use App\Models\AnnualEvent;
 use DB;
 use App\Models\Magazine;
+use App\Mail\PushMail;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -22,6 +24,16 @@ class StudentController extends Controller
         $filename1 = $file1->getClientOriginalName();
         $file->storeAs('public/uploads', $filename);
         $file->storeAs('public/uploads', $filename1);
+        $title = 'Welcome to University Magazine';
+        $body = 'Please check your account. you have new contribution in your department!';
+
+        $coordinator = DB::table('users')
+            ->select('*')
+            ->where('department_id', $department_id)
+            ->where('role_id', 3)
+            //->where('password', Hash::make($request->password))
+            ->get()->first;
+            //dd($coordinator);
         Magazine::create([
             'title' => $request->title,
             'user_id' => $user_id,
@@ -30,8 +42,9 @@ class StudentController extends Controller
             'file_url' => $filename1,
             'image_url' => $filename
         ]);
+        Mail::to($coordinator->email)->send(new PushMail($title, $body));
         return back()->withErrors([
-            'error' => 'Your article have successfully uploaded.',
+            'success' => 'Your article have successfully uploaded.',
         ]);
     }
 
