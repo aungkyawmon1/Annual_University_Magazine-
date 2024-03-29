@@ -25,12 +25,53 @@
 <div class="container">
     <h3 class="mt-3">Magazine contribution for 2023-2024 Academic Year</h3>
 
-    <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
-        <img src="{{ asset('img/alert-circle.svg') }}" alt="icon"/>
-        <div>
-            Closure date is <strong> 19 April, 2024</strong>
+    <div class="alert alert-danger d-flex justify-content-between align-items-center mt-4" role="alert">
+            <div class="d-flex gap-2">
+            <img src="{{ asset('img/alert-circle.svg') }}" alt="icon"/>
+                <div>
+                  Closure date is <strong> 19 April, 2024</strong>
+                </div>
+            </div>
+           <div data-bs-toggle="modal" data-bs-target="#create_event">
+                <button type="button" class="btn btn-sm btn-outline text-black d-flex align-items-center gap-1">
+                    <img src="{{ asset('img/Edit.svg') }}" alt="icon" /> Edit
+                </button>
+           </div>
         </div>
-    </div>
+
+        <!-- Create event modal -->
+        <div class="modal fade" id="create_event" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Create event</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
+                        <input type="datetime-local" class="form-control" id="event-closure-date" placeholder="Choose event closure date">
+                    </div>
+                    <div class="mb-3">
+                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
+                        <input type="text" class="form-control" id="event-caption" placeholder="Caption">
+                    </div>
+                    <div class="mb-3">
+                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
+                        <input type="number" class="form-control" id="academic-year" placeholder="Academic year">
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" required>
+                        <label class="form-check-label" for="inlineCheckbox1">Agree <span class="blue-600">terms & conditions</span></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                </div>
+            </div>
+            </div>
+        </div>
 
     <div class="row mt-4">
         <h5 class="mb-3">Published contributions</h5>
@@ -68,6 +109,7 @@
         @endif
     </div>
 </div>
+
 
 
 <!-- js -->
