@@ -14,6 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- custom css -->
     <link href="../css/customTheme.css" rel="stylesheet">
+    <!-- data table css -->
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -84,42 +87,50 @@
         <div class="row mt-4">
             <h5 class="mb-3">Selected contributions</h5>
             <div class="table-responsive">
-                <table class="table my-table">
-                    <thead class="table">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Student name</th>
-                        <th scope="col">Faculty</th>
-                        <th scope="col">Published date</th>
-                        <th scope="col"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>22 Oct 2023</td>
-                        <td>Published</td>
-                        <td class="text-end"><img src="../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>22 Oct 2023</td>
-                        <td>Unpublished</td>
-                        <td class="text-end"><img src="../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Jane Cooper</td>
-                        <td>22 Oct 2023</td>
-                        <td>Published</td>
-                        <td class="text-end"><img src="../img/arrow-right.svg" alt="arrow-right"/></td>
-                      </tr>
-                    </tbody>
-                </table>
+               <table id="table" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Student Name</th>
+                        <th>Faculty</th>
+                        <th>Published date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>John Cooper</th>
+                        <th>IST</th>
+                        <th>13 Dec 2023</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>Zohn Cooper</th>
+                        <th>AST</th>
+                        <th>10 Dec 2023</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>Cooper</th>
+                        <th>AST</th>
+                        <th>10 Dec 2023</th>
+                     </tr>
+                     <tr>
+                        <th>2</th>
+                        <th>Bone Cooper</th>
+                        <th>AST</th>
+                        <th>10 Dec 2023</th>
+                     </tr>
+                     <tr>
+                        <th>2</th>
+                        <th>Done Cooper</th>
+                        <th>AST</th>
+                        <th>10 Dec 2023</th>
+                     </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="mt-5">
+            <!-- <div class="mt-5">
                 <nav aria-label="Page navigation example">
                   <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
@@ -133,12 +144,21 @@
                     </li>
                   </ul>
                 </nav>
-              </div>
+            </div> -->
           
         </div>
     </div>
     
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script>
+        new DataTable('#table');
+    </script>
+
+    
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
