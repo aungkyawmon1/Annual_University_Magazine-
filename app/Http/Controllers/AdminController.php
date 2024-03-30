@@ -101,7 +101,7 @@ class AdminController extends Controller
         return view("admin.create_event");
     }
 
-    public function createMagazine(Request $reques) {
+    public function createMagazine(Request $request) {
         if (!Auth::check()) {
             return redirect("login")->withSuccess('You are not allowed to access');
         }

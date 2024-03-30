@@ -53,7 +53,7 @@
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
                             <!-- <button type="button" class="btn btn-outline w-50">Preview </button> -->
-                            <a class="btn btn-outline w-50" href="preview-pdf.html" target="_blank">Preview</a>
+                            <a class="btn btn-outline w-50" href="/preview/{{ $magazine->magazine_id }}" target="_blank">Preview</a>
                             <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
                                 <img src="img/Comment.svg" /> Comment
                             </button>

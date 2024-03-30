@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\GuestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,10 @@ use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('login');
 });
+
+Route::post('/publishMagazine/{id}', [CoordinatorController::class, 'publish'])->name('publishMagazine');
+Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
+Route::get('/student/preview/{magazine}', [StudentController::class, 'preview'])->name('student.preview');
 
 Route::controller(AuthenticationController::class)->group(function() {
     Route::get('/login', 'loginView')->name('login.view');
@@ -70,5 +75,9 @@ Route::controller(StudentController::class)->group(function() {
     Route::get('/publish', 'publishedList')->name('publish');
     //Route::get('/preview', 'preview')->name('preview');
     Route::get('/preview/{id}', 'preview')->name('preview');
+});
+
+Route::controller(GuestController::class)->group(function() {
+    Route::get('/guest/{department_id}', 'publishedList');
 });
 
