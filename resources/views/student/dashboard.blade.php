@@ -107,8 +107,8 @@
             </div>
         </div>
 
-         <!-- Comments Modal -->
-         <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Comments Modal -->
+        <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -124,6 +124,27 @@
                                 <small>2 mins ago</small>
                             </div>
                             <div class="stu-message">
+                                <div class="message-container">
+                                    <strong>John Cooper</strong>
+                                    <p>This is comment message.</p>
+                                </div>
+                                <small>2 mins ago</small>
+                            </div>
+                            <div class="stu-message">
+                                <div class="message-container">
+                                    <strong>John Cooper</strong>
+                                    <p>This is comment message.</p>
+                                </div>
+                                <small>2 mins ago</small>
+                            </div>
+                            <div class="co-message">
+                                <div class="message-container">
+                                    <strong>John Cooper</strong>
+                                    <p>This is comment message.</p>
+                                </div>
+                                <small>2 mins ago</small>
+                            </div>
+                            <div class="co-message">
                                 <div class="message-container">
                                     <strong>John Cooper</strong>
                                     <p>This is comment message.</p>
