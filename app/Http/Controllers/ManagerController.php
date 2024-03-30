@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Magazine;
+use DB;
 class ManagerController extends Controller
 {
     public function dashboard() {
         return view("manager.dashboard");
     }
-    
+
     public function report() {
         $departmentBy = Magazine::selectRaw('department_id, COUNT(*) as count')
                    ->join('departments as d', 'department_id', '=', 'd.id')

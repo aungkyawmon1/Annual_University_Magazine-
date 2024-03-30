@@ -6,6 +6,7 @@ use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\ManagerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
