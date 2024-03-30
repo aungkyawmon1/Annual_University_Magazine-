@@ -76,6 +76,7 @@ class CoordinatorController extends Controller
             return back()->with('success', 'Your comment has been posted.');
         }
     
+
         private function getMagazinesQuery($departmentId, $filter)
         {
             $query = Magazine::where('department_id', $departmentId)->with('user');
@@ -88,6 +89,7 @@ class CoordinatorController extends Controller
     
             return $query;
         }
+        
     
         private function findMagazine($id)
         {
