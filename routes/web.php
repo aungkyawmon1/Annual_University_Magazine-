@@ -81,3 +81,8 @@ Route::controller(GuestController::class)->group(function() {
     Route::get('/guest/{department_id}', 'publishedList');
 });
 
+Route::controller(ManagerController::class)->group(function() {
+    Route::get('/manager-dashboard', 'dashboard');
+    Route::get('/manager-report', 'report');
+});
+
