@@ -21,7 +21,7 @@
 
 <body>
 
-
+@include('partials._header')
 <div class="container">
     <h3 class="mt-3">Magazine contribution for {{$currentAcademicYear->academic_year}} Academic Year</h3>
     <h5 class="mt-3 gray-600">{{$departmentName->name}} Department</h5>
@@ -71,7 +71,7 @@
                     <th scope="col">Student name</th>
                     <th scope="col">Last uploaded</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Views</th>
+{{--                    <th scope="col">Comments</th>--}}
                     <th scope="col"> </th>
                 </tr>
                 </thead>
@@ -82,7 +82,7 @@
                         <td>{{ $magazine->user->first_name }} {{ $magazine->user->last_name }}</td>
                         <td>{{ $magazine->updated_at->format('d M Y') }}</td>
                         <td>{{ $magazine->is_published ? 'Published' : 'Unpublished' }}</td>
-                        <td>{{ $magazine->view_count }} views</td>
+{{--                        <td>{{ $magazine->comment_count }} views</td>--}}
                         <td class="text-end">
                             <a href="{{ route('coordinator.student.detail', ['magazineId' => $magazine->magazine_id]) }}">
                                 <img src="{{ asset('img/arrow-right.svg') }}" alt="arrow-right">

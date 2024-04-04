@@ -42,7 +42,7 @@
                <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="{{ asset('img/' . $magazine->image_url) }}" alt="Magazine Image">
+                            <img src="{{ asset('storage/uploads/img/' . $magazine->image_url) }}" alt="Magazine Image">
                         </div>
                         <label class="mt-2 caption">
                             {{ $magazine->title }}
@@ -80,18 +80,18 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-4">
-                                <input type="file" id="actual-btn" hidden/>
-                                <label class="custom-file-upload file" for="actual-btn" >
+                                <label class="custom-file-upload file" for="doc_files">
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px;" alt="upload" /> <br>
                                     Upload contribution (docx, pdf)
                                 </label>
+                                <input name="doc_file" type="file" id="doc_file" multiple>
                             </div>
                             <div class="mb-4">
-                                <input type="file" id="actual-btn" hidden/>
-                                <label class="custom-file-upload" for="actual-btn" >
+                                <label class="custom-file-upload file" for="img_file">
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload" /> <br>
                                     Upload photo
                                 </label>
+                                <input name="img_file" type="file" id="img_file" multiple>
                             </div>
                             <div class="mb-3">
                                 <!-- <label for="article-caption" class="form-label">Caption</label> -->

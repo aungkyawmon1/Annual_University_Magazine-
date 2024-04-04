@@ -69,9 +69,9 @@
                                 <th>{{ $cont->role_id }}</th>
                                 <th>{{ $cont->department_id }}</th>
                                 <th>{{ $cont->address }}</th>
-                                <th><a href="/accounts/{{ $cont->id }}/edit" class="btn btn-primary">Edit</a>
-                                    <a href="/delete/{{ $cont->id }}" class="btn btn-danger">Delete</a>
-                                </th>
+{{--                                <th><a href="/accounts/{{ $cont->id }}/edit" class="btn btn-primary">Edit</a>--}}
+{{--                                    <a href="/delete/{{ $cont->id }}" class="btn btn-danger">Delete</a>--}}
+{{--                                </th>--}}
                             </tr>
                         @endforeach
                     @else

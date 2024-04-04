@@ -30,7 +30,7 @@
 
         <div class="row mt-4">
             <h5 class="mb-3">Published contributions</h5>
-            @foreach ($magazines as $cont)
+            @foreach ($magazine as $cont)
             <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
-                        <button type="button" class="btn btn-outline w-100"><a href="/preview/{{ $cont->id }}">Preview </a></button>
+                        <button type="button" class="btn btn-outline w-100"><a href="/preview/{{ $cont->magazine_id }}">Preview </a></button>
                         </div>
                     </div>
                 </div>

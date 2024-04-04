@@ -36,8 +36,8 @@ class AuthenticationController extends Controller
 //                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 3) {
-                return view('coordinator.dashboard');
-//                return redirect()->route('coordinator.dashboard')
+//                return redirect()->route('dashboard');
+                return redirect()->route('coordinator.dashboard');
 //                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 4) {
@@ -49,7 +49,9 @@ class AuthenticationController extends Controller
 
             }
             else if(Auth::user()->role_id == 5) {
-                return redirect()->route('guests');
+//                return redirect()->route('guests');
+                return redirect('/guest/1'); // fix later
+
 //                return redirect()->route('guest/dashboard')
 //                ->withSuccess('You have successfully logged in!');
             }
@@ -89,9 +91,7 @@ class AuthenticationController extends Controller
             'role_id' => 5,
             'department_id' => $request->department_id
         ]);
-//        return view('guest.index');
-        return redirect()->route('guests');
-//        return redirect()->route('guestLogin')->with('success','Account has been created successfully.');
+        return redirect('/guestLogin');
     }
 
     public function guestLogin (Request $request) {
@@ -119,8 +119,8 @@ class AuthenticationController extends Controller
             ->select('magazines.id','magazines.user_id', 'magazines.department_id', 'magazines.title', 'magazines.description', 'magazines.image_url', 'magazines.file_url', 'magazines.created_at', 'departments.name as department_name', 'users.username')
             ->get();*/
             $request->session()->regenerate();
-            //return redirect()->route('guest'. $department_id);
-            return Redirect::to('guest/'.$department_id);
+            return redirect()->route('guest/'. $department_id);
+//            return Redirect::to('guest/'.$department_id);
             //return view('guest.index')->with("magazines", $magazines);
             /*return redirect()->route('publish')
                     ->withSuccess('You have successfully logged in!');
@@ -134,7 +134,7 @@ class AuthenticationController extends Controller
         ]);
     }
     }
-    
+
     public function logout() {
         Session::flush();
         Auth::logout();
