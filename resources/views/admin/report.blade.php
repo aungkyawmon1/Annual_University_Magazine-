@@ -29,12 +29,12 @@
                 <a class="nav-link" aria-current="page" href="#">Contributions</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Reports</a>
+                <a class="nav-link active" href="/admin-report">Reports</a>
               </li>
             </ul>
             <div class="d-flex gap-3">
               <button type="button" class="btn nav-btn btn-sm"><img src="../img/notification.svg" alt="notification"></button>
-              <button type="button" class="btn nav-btn btn-sm"><a class="nav-link" href="{{ route('logout') }}"><img src="../../img/logout.svg" alt="logout"></a></button>
+              <button type="button" class="btn nav-btn btn-sm"><img src="../img/logout.svg" alt="logout"></button>
             </div>
           </div>
         </div>

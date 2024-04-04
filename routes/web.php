@@ -49,6 +49,7 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/create-event', 'createMagazine')->name('create-event');
     Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
     Route::post('/edit-event', 'editMagazine')->name('edit-event');
+    Route::get('/admin-report', 'report');
 });
 
 // Student routes
