@@ -14,9 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- custom css -->
     <link href="../css/customTheme.css" rel="stylesheet">
-    <!-- data table css -->
-    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +34,7 @@
             </ul>
             <div class="d-flex gap-3">
               <button type="button" class="btn nav-btn btn-sm"><img src="../img/notification.svg" alt="notification"></button>
-              <button type="button" class="btn nav-btn btn-sm"><img src="../img/logout.svg" alt="logout"></button>
+              <button type="button" class="btn nav-btn btn-sm"><a class="nav-link" href="{{ route('logout') }}"><img src="../../img/logout.svg" alt="logout"></a></button>
             </div>
           </div>
         </div>
@@ -54,50 +51,32 @@
         
         <div class="row mt-4">
             <h5 class="mb-3">Top selected faculties</h5>
+            @foreach ($cards as $cont)
             <div class="col-12 col-md-3 mb-3">
-                <div class="report-container report-color-1">
-                    <strong class="mb-3">Information Science Department</strong>
+                <div class="report-container {{$cont->color}}">
+                    <strong class="mb-3">{{$cont->department_name}}</strong>
                     <span class="text-muted">Published</span>
-                    <h4>9/20</h4>
+                    <h4>{{$cont->published}}/{{$cont->total}}</h4>
                 </div>
             </div>
-            <div class="col-12 col-md-3 mb-3">
-                <div class="report-container report-color-2">
-                    <strong class="mb-3">Information Science Department</strong>
-                    <span class="text-muted">Published</span>
-                    <h4>9/20</h4>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-3">
-                <div class="report-container report-color-3">
-                    <strong class="mb-3">Information Science Department</strong>
-                    <span class="text-muted">Published</span>
-                    <h4>9/20</h4>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-3">
-                <div class="report-container report-color-4">
-                    <strong class="mb-3">Information Science Department</strong>
-                    <span class="text-muted">Published</span>
-                    <h4>9/20</h4>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="row mt-4">
             <h5 class="mb-3">Selected contributions</h5>
             <div class="table-responsive">
-               <table id="table" class="table table-striped" style="width:100%">
-                  <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Student Name</th>
-                        <th>Faculty</th>
-                        <th>Published date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  @foreach ($magazines as $cont)
+                <table class="table my-table">
+                    <thead class="table">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Student name</th>
+                        <th scope="col">Faculty</th>
+                        <th scope="col">Published date</th>
+                        <th scope="col"> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($magazines as $cont)
                     <tr>
                         <th scope="row">{{$cont->id}}</th>
                         <td>{{$cont->username}}</td>
@@ -106,10 +85,10 @@
                         <td class="text-end"><img src="../img/arrow-right.svg" alt="arrow-right"/></td>
                       </tr>
                     @endforeach
-                </tbody>
-              </table>
+                    </tbody>
+                </table>
             </div>
-            <!-- <div class="mt-5">
+            <div class="mt-5">
                 <nav aria-label="Page navigation example">
                   <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
@@ -123,21 +102,12 @@
                     </li>
                   </ul>
                 </nav>
-            </div> -->
+              </div>
           
         </div>
     </div>
     
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-    <script>
-        new DataTable('#table');
-    </script>
-
-    
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

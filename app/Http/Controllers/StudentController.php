@@ -10,6 +10,9 @@ use App\Models\AcademicYear;
 use App\Models\AnnualEvent;
 use DB;
 use App\Models\Magazine;
+use App\Mail\PushMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -17,11 +20,21 @@ class StudentController extends Controller
         $file = $request->file('img_file');
         $file1 = $request->file('doc_file');
         $user_id = auth()->user()->id;
-        $department_id = auth()->user()->id;
+        $department_id = auth()->user()->department_id;
         $filename = $file->getClientOriginalName();
         $filename1 = $file1->getClientOriginalName();
         $file->storeAs('public/uploads', $filename);
         $file->storeAs('public/uploads', $filename1);
+        $title = 'Welcome to University Magazine';
+        $body = 'Please check your account. you have new contribution in your department!';
+
+        $coordinator = DB::table('users')
+            ->select('*')
+            ->where('department_id', $department_id)
+            ->where('role_id', 3)
+            //->where('password', Hash::make($request->password))
+            ->get()->first;
+            //dd($coordinator);
         Magazine::create([
             'title' => $request->title,
             'user_id' => $user_id,
@@ -30,8 +43,9 @@ class StudentController extends Controller
             'file_url' => $filename1,
             'image_url' => $filename
         ]);
+        Mail::to($coordinator->email)->send(new PushMail($title, $body));
         return back()->withErrors([
-            'error' => 'Your article have successfully uploaded.',
+            'success' => 'Your article have successfully uploaded.',
         ]);
     }
 
@@ -51,16 +65,52 @@ class StudentController extends Controller
     }
 
     public function getMagazinesByUserId($userId=1) {
-        $magazines = DB::table('magazine as m')
-            ->join('users as u', 'm.user_id', '=', 'u.id')
-            ->join('departments as d', 'm.department_id', '=', 'd.id')
-            ->leftJoin('comment as c', 'm.magazine_id', '=', 'c.magazine_id')
+        $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
+        $userId = Auth::user()->id;
+        $departmentName = DB::table('departments as d')
+            ->join('users as u', 'u.department_id', '=', 'd.id')
+            ->select('d.name')
             ->where('u.id', $userId)
-            ->where('c.status', 1)
-            ->select('m.user_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name as department_name', 'u.username', 'd.name', DB::raw('COUNT(c.comment_id) as comment_count'))
-            ->groupBy('m.user_id', 'm.department_id', 'm.title', 'm.description', 'm.image_url', 'm.file_url', 'm.created_at', 'd.name', 'u.username', 'd.name')
+            ->first();
+        $magazines = Magazine::query()
+            ->select(
+                'magazine.user_id',
+                'magazine.magazine_id',
+                'magazine.department_id',
+                'magazine.title',
+                'magazine.description',
+                'magazine.image_url',
+                'magazine.file_url',
+                'magazine.created_at',
+                'departments.name AS department_name',
+                'users.username',
+                \DB::raw('COUNT(comments.comment_id) as comment_count')
+            )
+            ->join('users', 'magazine.user_id', '=', 'users.id')
+            ->join('departments', 'magazine.department_id', '=', 'departments.id')
+            ->leftJoin('comments', function ($join) {
+                $join->on('magazine.magazine_id', '=', 'comments.magazine_id')
+                    ->where('comments.status', 1);
+            })
+            ->where('users.id', $userId)
+            ->groupBy(
+                'magazine.user_id',
+                'magazine.magazine_id',
+                'magazine.department_id',
+                'magazine.title',
+                'magazine.description',
+                'magazine.image_url',
+                'magazine.file_url',
+                'magazine.created_at',
+                'departments.name',
+                'users.username'
+            )
             ->get();
-        return view('student.dashboard')->with("magazines", $magazines);
+        return view('student.dashboard',[
+            'magazines' => $magazines,
+            'currentAcademicYear' => $currentAcademicYear,
+            'departmentName' => $departmentName,
+        ]);
     }
 
     public function preview($id) {

@@ -24,7 +24,7 @@
         <div class="row mt-3">
             <div class="col-12 col-md-4">
                 <div class="">
-                    <img class="img-fluid" src="{{ asset('img/'.$magazine->image_url) }}" alt="Uni Img" />
+                    <img class="img-fluid" src="{{ asset('storage/uploads/'.$magazine->image_url) }}" alt="Uni Img" />
                     <label class="mt-2 caption">
                         {{$magazine->title}}
                     </label>
@@ -51,7 +51,7 @@
         PSPDFKit.load({
             licenseKey: '5c-CTDxZCVH0Mdt5p0qv1AM1JAt3Z5g_R50JXxo-oipYbpN_6oLWZhqdeTwrnWK54vzPmhrL-WHKPxuaBatUBuacyOumrQOdc7aLnh0zkUGWQNns1Enshq8-hTLHNwSwBYjnckUTqQzqtYb8aWvXCFI7qRg5jTzlu3iPslqagkM7mNDsbzDsszKh_VAYxpJtkurPIyECcOVqxg',
             container: '#pspdfkit',
-            document: "{{ asset('img/'.$magazine->file_url) }}", // Add the path to your document here.
+            document: "{{ asset('storage/uploads/'.$magazine->file_url) }}", // Add the path to your document here.
             // disableToolbar: true,
             toolbarItems: [
                              { type: "sidebar-thumbnails" },

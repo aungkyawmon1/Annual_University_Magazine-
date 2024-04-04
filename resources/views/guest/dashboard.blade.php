@@ -30,11 +30,11 @@
 
         <div class="row mt-4">
             <h5 class="mb-3">Published contributions</h5>
-            @foreach ($magazines as $cont)
+            @foreach ($magazine as $cont)
             <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="../../img/img1.png" alt="img">
+                            <img src="{{ asset('storage/uploads/'.$cont->image_url) }}" alt="img">
                         </div>
                         <label class="mt-2 caption">
                             {{$cont->title}}
@@ -47,53 +47,11 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-100" onclick="window.location = 'preview'"><a href="/preview/{{ $cont->id }}" class="btn btn-primary">Preview </a></button>
+                        <button type="button" class="btn btn-outline w-100"><a href="/preview/{{ $cont->magazine_id }}">Preview </a></button>
                         </div>
                     </div>
                 </div>
             @endforeach
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
-                    <div class="post-container">
-                        <div class="img-container">
-                            <img src="../../img/img1.png" alt="img">
-                        </div>
-                        <label class="mt-2 caption">
-                            Caption for contribution
-                        </label>
-                        <div class="d-flex flex-column mt-2">
-                            <strong>John Cooper</strong>
-                            <div class="d-flex justify-content-between">
-                                <span class="post-info">Information Science</span>
-                                <span class="post-info">4 Mar, 2024</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-100">Preview </button>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
-                    <div class="post-container">
-                        <div class="img-container">
-                            <img src="../../img/img1.png" alt="img">
-                        </div>
-                        <label class="mt-2 caption">
-                            Caption for contribution
-                        </label>
-                        <div class="d-flex flex-column mt-2">
-                            <strong>John Cooper</strong>
-                            <div class="d-flex justify-content-between">
-                                <span class="post-info">Information Science</span>
-                                <span class="post-info">4 Mar, 2024</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-100">Preview </button>
-
-                        </div>
-                    </div>
-                </div>
         </div>
     </div>
 

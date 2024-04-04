@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\ManagerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,10 @@ Route::get('/', function () {
     return view('login');
 });
 
+Route::post('/publishMagazine/{id}', [CoordinatorController::class, 'publish'])->name('publishMagazine');
+Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
+Route::get('/student/preview/{magazine}', [StudentController::class, 'preview'])->name('student.preview');
+Route::get('/dashboard', [CoordinatorController::class, 'index'])->name('coordinator.dashboard');
 Route::controller(AuthenticationController::class)->group(function() {
     Route::get('/login', 'loginView')->name('login.view');
     Route::post('/login', 'login')->name('login');
@@ -43,6 +49,7 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/create-event', 'createMagazine')->name('create-event');
     Route::get('/events/{event}/edit', 'editMagazineForm')->name('edit-event');
     Route::post('/edit-event', 'editMagazine')->name('edit-event');
+    Route::get('/admin-report', 'report');
 });
 
 // Student routes
@@ -57,17 +64,27 @@ Route::controller(StudentController::class)->group(function() {
 Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(function () {
     Route::get('/dashboard', [CoordinatorController::class, 'index'])->name('coordinator.dashboard');
     Route::get('/magazine/preview/{magazine}', [CoordinatorController::class, 'previewMagazine'])->name('magazine.preview');
+    Route::get('/unpublished', [CoordinatorController::class, 'showUnpublished'])->name('unpublished');
     Route::post('/publishMagazine/{id}', [CoordinatorController::class, 'publish'])->name('publishMagazine');
     Route::get('/student-detail/{magazineId}', [CoordinatorController::class, 'showDetail'])->name('student.detail');
     //comment
     Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
     // filter
-    Route::get('/contributions', [CoordinatorController::class, 'index'])->name('coordinator.showContributions');
+    Route::get('/contributions', [CoordinatorController::class, 'showContributions'])->name('coordinator.showContributions');
 });
 
 Route::controller(StudentController::class)->group(function() {
     Route::get('/publish', 'publishedList')->name('publish');
     //Route::get('/preview', 'preview')->name('preview');
     Route::get('/preview/{id}', 'preview')->name('preview');
+});
+
+Route::controller(GuestController::class)->group(function() {
+    Route::get('/guest/{department_id}', 'publishedList');
+});
+
+Route::controller(ManagerController::class)->group(function() {
+    Route::get('/manager-dashboard', 'dashboard');
+    Route::get('/manager-report', 'report');
 });
 

@@ -20,13 +20,13 @@
 <body>
 @include('partials._header')
 <div class="container">
-    <h3 class="mt-3">Magazine contribution for 2023-2024 Academic Year</h3>
-    <h5 class="mt-3 gray-600">Information Science Department</h5>
+    <h3 class="mt-3">Magazine contribution for {{$currentAcademicYear->academic_year}} Academic Year</h3>
+    <h5 class="mt-3 gray-600">{{$departmentName->name}} Department</h5>
 
     <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
         <img src="./img/alert-circle.svg" alt="icon"/>
         <div>
-            Closure date is <strong> 19 April, 2024</strong>
+            Closure date is <strong>{{$currentAcademicYear->closure_date}}</strong>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
                 <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="{{ asset('img/'.$magazine->{'image_url'}) }}" alt="img">
+                            <img src="{{ asset('storage/uploads/'.$magazine->{'image_url'}) }}" alt="img">
                         </div>
                         <label class="mt-2 caption">
                             {{$magazine->title}}
@@ -53,10 +53,10 @@
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
                             <!-- <button type="button" class="btn btn-outline w-50">Preview </button> -->
-                            <a class="btn btn-outline w-50" href="preview-pdf.html" target="_blank">Preview</a>
-                            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">
-                                <img src="img/Comment.svg" /> Comment
-                            </button>
+                            <a class="btn btn-outline w-50" href="/preview/{{ $magazine->magazine_id }}" target="_blank">Preview</a>
+{{--                            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">--}}
+{{--                                <img src="img/Comment.svg" /> Comment--}}
+{{--                            </button>--}}
                         </div>
                     </div>
                 </div>
@@ -76,18 +76,18 @@
                         @csrf
                         <div class="modal-body">
                             <div class="mb-4">
-                                <input name="doc_file" type="file" id="actual-btn" hidden/>
-                                <label class="custom-file-upload file" for="actual-btn" >
+                                <label class="custom-file-upload file" for="doc_files">
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px;" alt="upload" /> <br>
-                                    Upload contribution (docx, pdf)
+                                                                        Upload contribution (docx, pdf)
                                 </label>
+                                <input name="doc_file" type="file" id="doc_file" multiple>
                             </div>
                             <div class="mb-4">
-                                <input name="img_file" type="file" id="actual-btn" hidden/>
-                                <label class="custom-file-upload file" for="actual-btn" >
+                                <label class="custom-file-upload file" for="img_file">
                                     <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload" /> <br>
-                                    Upload photo
+                                                                        Upload photo
                                 </label>
+                                <input name="img_file" type="file" id="img_file" multiple>
                             </div>
                             <div class="mb-3">
                                 <!-- <label for="article-caption" class="form-label">Caption</label> -->
@@ -107,8 +107,8 @@
             </div>
         </div>
 
-         <!-- Comments Modal -->
-         <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Comments Modal -->
+        <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -124,6 +124,27 @@
                                 <small>2 mins ago</small>
                             </div>
                             <div class="stu-message">
+                                <div class="message-container">
+                                    <strong>John Cooper</strong>
+                                    <p>This is comment message.</p>
+                                </div>
+                                <small>2 mins ago</small>
+                            </div>
+                            <div class="stu-message">
+                                <div class="message-container">
+                                    <strong>John Cooper</strong>
+                                    <p>This is comment message.</p>
+                                </div>
+                                <small>2 mins ago</small>
+                            </div>
+                            <div class="co-message">
+                                <div class="message-container">
+                                    <strong>John Cooper</strong>
+                                    <p>This is comment message.</p>
+                                </div>
+                                <small>2 mins ago</small>
+                            </div>
+                            <div class="co-message">
                                 <div class="message-container">
                                     <strong>John Cooper</strong>
                                     <p>This is comment message.</p>
