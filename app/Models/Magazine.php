@@ -35,6 +35,12 @@ public function user()
 //         return $this->hasMany(Comment::class, 'magazine_id');
 //     }
 
+public function comments()
+    {
+        return $this->hasMany(Comment::class, 'magazine_id', 'magazine_id');
+    }
 }
+
+
 
 

@@ -26,7 +26,7 @@ class CoordinatorController extends Controller
             ->select('d.name')
             ->where('u.id', $userId)
             ->first();
-        $filter = $request->query('filter', 'all');
+        $filter = $request->query('filter','all');
 
         $magazines = $this->getMagazinesQuery($departmentId, $filter)->get();
         $studentCount = $magazines->groupBy('user_id')->count();

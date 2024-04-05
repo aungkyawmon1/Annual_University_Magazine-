@@ -31,39 +31,71 @@
     </div>
 
     <div class="row mt-4">
+        @php
+            $isBeforeClosureDate = \Carbon\Carbon::now()->isBefore($currentAcademicYear->closure_date);
+        @endphp
+    
+        @if ($isBeforeClosureDate)
+            <div class="col-12 col-md-4 col-lg-3 mb-4">
+                <div class="file_upload_btn" data-bs-toggle="modal" data-bs-target="#upload_file">
+                    <img src="./img/CloudArrowUp.svg" alt="upload-icon" />
+                    Upload contribution
+                </div>
+            </div>
+        @endif
+
+
+        
+
+        @if (count($magazines) > 0)
+    @foreach ($magazines as $magazine)
         <div class="col-12 col-md-4 col-lg-3 mb-4">
-            <div class="file_upload_btn" data-bs-toggle="modal" data-bs-target="#upload_file">
-                <img src="./img/CloudArrowUp.svg" alt="upload-icon" />
-                Upload contribution
+            <div class="post-container">
+                <div class="img-container">
+                    <img src="{{ asset('storage/uploads/'.$magazine->image_url) }}" alt="img">
+                </div>
+                <label class="mt-2 caption">{{ $magazine->title }}</label>
+                <div class="d-flex justify-content-between mt-2">
+                    <span class="post-info">{{ $magazine->created_at->format('M d, Y') }}</span>
+                    <!-- Assuming $magazine->comments is loaded -->
+                    <span class="post-info">{{ $magazine->comments->count() }} comments</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2 gap-3">
+                    <a class="btn btn-outline w-50" href="/preview/{{ $magazine->magazine_id }}" target="_blank">Preview</a>
+                    <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#commentsModal-{{ $magazine->magazine_id }}">Comment</button>
+                </div>
             </div>
         </div>
-        @if (count($magazines) > 0)
-            @foreach ($magazines as $magazine)
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
-                    <div class="post-container">
-                        <div class="img-container">
-                            <img src="{{ asset('storage/uploads/'.$magazine->{'image_url'}) }}" alt="img">
-                        </div>
-                        <label class="mt-2 caption">
-                            {{$magazine->title}}
-                        </label>
-                        <div class="d-flex justify-content-between mt-2">
-                            <span class="post-info">{{$magazine->created_at}}</span>
-                            <span class="post-info">{{$magazine->comment_count}} comments</span>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2 gap-3">
-                            <!-- <button type="button" class="btn btn-outline w-50">Preview </button> -->
-                            <a class="btn btn-outline w-50" href="/preview/{{ $magazine->magazine_id }}" target="_blank">Preview</a>
-{{--                            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#comments">--}}
-{{--                                <img src="img/Comment.svg" /> Comment--}}
-{{--                            </button>--}}
-                        </div>
+
+        <!-- Comments Modal for Each Magazine -->
+        <div class="modal fade" id="commentsModal-{{ $magazine->magazine_id }}" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="commentsModalLabel">Comments for "{{ $magazine->title }}"</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @foreach($magazine->comments as $comment)
+                            <div class="message-container mb-3">
+                                <strong>{{ $comment->user->name ?? 'Anonymous' }}</strong> - <small>{{ $comment->created_at->diffForHumans() }}</small>
+                                <p>{{ $comment->comment }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
-            @endforeach
-        @else
-            No Data
-        @endif
+            </div>
+        </div>
+    @endforeach
+@else
+    <p>No Data</p>
+@endif
+
+</div>
+
         <!-- Article upload Modal -->
         <div class="modal fade" id="upload_file" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -107,61 +139,7 @@
             </div>
         </div>
 
-        <!-- Comments Modal -->
-        <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="co-message">
-                                <div class="message-container">
-                                    <strong>John Cooper</strong>
-                                    <p>This is comment message.</p>
-                                </div>
-                                <small>2 mins ago</small>
-                            </div>
-                            <div class="stu-message">
-                                <div class="message-container">
-                                    <strong>John Cooper</strong>
-                                    <p>This is comment message.</p>
-                                </div>
-                                <small>2 mins ago</small>
-                            </div>
-                            <div class="stu-message">
-                                <div class="message-container">
-                                    <strong>John Cooper</strong>
-                                    <p>This is comment message.</p>
-                                </div>
-                                <small>2 mins ago</small>
-                            </div>
-                            <div class="co-message">
-                                <div class="message-container">
-                                    <strong>John Cooper</strong>
-                                    <p>This is comment message.</p>
-                                </div>
-                                <small>2 mins ago</small>
-                            </div>
-                            <div class="co-message">
-                                <div class="message-container">
-                                    <strong>John Cooper</strong>
-                                    <p>This is comment message.</p>
-                                </div>
-                                <small>2 mins ago</small>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="d-flex w-100 gap-3">
-                                <input type="text" class="form-control" placeholder="Your comment">
-                                <button type="button" class="btn btn-primary"><img src="./img/sendBtn.svg" alt="send-icon" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-    </div>
+       
 </div>
 
 
