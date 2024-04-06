@@ -22,7 +22,7 @@ class AdminController extends Controller
         $users = DB::table('users')
             ->join('roles', 'users.role_id', '=', 'roles.id')// joining the contacts table , where user_id and contact_user_id are same
             ->join('departments', 'users.department_id', '=', 'departments.id')
-            ->select('users.*', 'roles.name', 'departments.name')
+            ->select('users.*', 'roles.name as role_name', 'departments.name as department_name')
             ->get();
         //$users = User::all();
         return view('admin.accounts')->with("users", $users);
@@ -38,11 +38,13 @@ class AdminController extends Controller
         return view('admin.dashboard')->with("magazines", $magazines);
     }
     public function guestList() {
+        $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
         $guests = DB::table('users')
-            ->select('username', 'created_at', 'updated_at')
+            ->select('username', 'users.created_at', 'users.updated_at', 'departments.name as department_name')
+            ->join('departments', 'users.department_id', '=', 'departments.id')
             ->where('role_id', 5)
             ->get();
-        return view('coordinator.guests')->with("guests", $guests);
+        return view('coordinator.guests')->with("guests", $guests)->with('currentAcademicYear',$currentAcademicYear);
     }
 
 
@@ -223,14 +225,14 @@ class AdminController extends Controller
                         $objectsArray[] = $myClass;
                     }
                    }
-                
+
                    $magazines = DB::table('magazine')
                         ->where('is_published', 1)
                         ->join('users', 'magazine.user_id', '=', 'users.id')
                         ->join('departments', 'magazine.department_id', '=', 'departments.id')
                         ->select('magazine.magazine_id as id','magazine.user_id', 'magazine.magazine_id','magazine.department_id', 'magazine.title', 'magazine.description', 'magazine.image_url', 'magazine.file_url', 'magazine.created_at', 'departments.name as department_name', 'users.username')
                         ->get();
-                        
+
         return view("manager.reports")->with('magazines', $magazines)->with('cards', $objectsArray);
     }
 }

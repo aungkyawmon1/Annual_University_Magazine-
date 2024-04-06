@@ -28,7 +28,6 @@
                     <label class="mt-2 caption">
                         {{$magazine->title}}
                     </label>
-                    <button type="button" class="btn btn-lg btn-primary mt-2 w-100">Publish </button>
                 </div>
             </div>
             <div class="col-12 col-md-8">

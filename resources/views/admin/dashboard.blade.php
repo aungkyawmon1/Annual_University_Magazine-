@@ -34,7 +34,7 @@
             </div>
            <div data-bs-toggle="modal" data-bs-target="#create_event">
                 <button type="button" class="btn btn-sm btn-outline text-black d-flex align-items-center gap-1">
-                    <img src="{{ asset('img/Edit.svg') }}" alt="icon" /> Edit
+                    <img src="{{ asset('img/resize.png') }}" alt="icon" /> Edit
                 </button>
            </div>
         </div>
@@ -84,7 +84,7 @@
                 <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="{{ asset('img/'.$magazine->{'image_url'}) }}" alt="img">
+                            <img src="{{ asset('storage/uploads/'.$magazine->image_url) }}" alt="img">
                         </div>
                         <label class="mt-2 caption">
                             {{$magazine->title}}

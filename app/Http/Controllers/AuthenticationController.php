@@ -31,7 +31,8 @@ class AuthenticationController extends Controller
 //                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 2) {
-                return view('manager.dashboard');
+                return redirect()->route('manager-magazines');
+//                return view('manager.dashboard');
 //                return redirect()->route('manager/dashboard')
 //                ->withSuccess('You have successfully logged in!');
             }
@@ -49,8 +50,9 @@ class AuthenticationController extends Controller
 
             }
             else if(Auth::user()->role_id == 5) {
+                $departmentId = Auth::user()->department_id;
 //                return redirect()->route('guests');
-                return redirect('/guest/1'); // fix later
+                return redirect('/guest/'.$departmentId); // fix later
 
 //                return redirect()->route('guest/dashboard')
 //                ->withSuccess('You have successfully logged in!');

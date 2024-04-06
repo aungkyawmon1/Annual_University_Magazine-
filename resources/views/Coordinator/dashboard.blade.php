@@ -24,7 +24,6 @@
 @include('partials._header')
 <div class="container">
     <h3 class="mt-3">Magazine contribution for {{$currentAcademicYear->academic_year}} Academic Year</h3>
-    <h5 class="mt-3 gray-600">{{$departmentName->name}} Department</h5>
 
     <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
         <img src="../../img/alert-circle.svg" alt="icon"/>
@@ -33,26 +32,50 @@
             Closure date is <strong> {{$closureDate}}</strong>
         </div>
     </div>
+    {{--    @foreach ($cards as $cont)--}}
+    <div class="col-12 col-md-3 mb-3">
+        <div class="report-container report-color-4">
+            <strong class="mb-3">{{$departmentName->name}} Department</strong>
 
+            <?php
+            $magaz = json_decode($magazines, true);
+
+            $publishCount = 0;
+            $unpublishCount = 0;
+
+            foreach ($magaz as $magazine) {
+                if ($magazine['is_published'] == 1) {
+                    $publishCount++;
+                } else {
+                    $unpublishCount++;
+                }
+            }
+
+            ?>
+            <span class="text-muted">Published</span>
+            <h4>{{$publishCount}}/{{$unpublishCount}}</h4>
+        </div>
+    </div>
+    {{--    @endforeach--}}
     <div class="row mt-4 d-flex flex-row justify-content-between">
         <div class="d-flex flex-row align-items-center justify-content-between">
 
 
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    {{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'all']) }}">All</a>--}}
-                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="#">All</a>
-                </li>
-                <li class="nav-item">
-                    {{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'published']) }}">Published</a>--}}
-                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="#">Published</a>
-                </li>
-                <li class="nav-item">
-                    {{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'unpublished']) }}">Unpublished</a>--}}
-                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="#">Unpublished</a>
-                </li>
-            </ul>
-
+{{--            <ul class="nav nav-pills">--}}
+{{--                <li class="nav-item">--}}
+{{--                    --}}{{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'all']) }}">All</a>--}}
+{{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="#">All</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    --}}{{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'published']) }}">Published</a>--}}
+{{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="#">Published</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    --}}{{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'unpublished']) }}">Unpublished</a>--}}
+{{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="#">Unpublished</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--the all published unpublished filter function is removed by zawwaisoe because of lack of time--}}
 
             <div class="d-flex gap-3">
                 <span>{{ $studentCount }} Students</span>

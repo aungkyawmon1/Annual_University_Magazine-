@@ -26,6 +26,7 @@ Route::post('/publishMagazine/{id}', [CoordinatorController::class, 'publish'])-
 Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
 Route::get('/student/preview/{magazine}', [StudentController::class, 'preview'])->name('student.preview');
 Route::get('/dashboard', [CoordinatorController::class, 'index'])->name('coordinator.dashboard');
+Route::get('/coordinator-guests', [CoordinatorController::class, 'guestListCoordinator'])->name('coordinator.guests');
 Route::controller(AuthenticationController::class)->group(function() {
     Route::get('/login', 'loginView')->name('login.view');
     Route::post('/login', 'login')->name('login');
@@ -63,6 +64,7 @@ Route::controller(StudentController::class)->group(function() {
 // Coordinator routes
 Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(function () {
     Route::get('/dashboard', [CoordinatorController::class, 'index'])->name('coordinator.dashboard');
+
     Route::get('/magazine/preview/{magazine}', [CoordinatorController::class, 'previewMagazine'])->name('magazine.preview');
     Route::get('/unpublished', [CoordinatorController::class, 'showUnpublished'])->name('unpublished');
     Route::post('/publishMagazine/{id}', [CoordinatorController::class, 'publish'])->name('publishMagazine');
@@ -71,7 +73,10 @@ Route::middleware(['auth'])->prefix('coordinator')->name('coordinator.')->group(
     Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'postComment'])->name('coordinator.comment.post');
     // filter
     Route::get('/contributions', [CoordinatorController::class, 'showContributions'])->name('coordinator.showContributions');
+
 });
+
+
 
 Route::controller(StudentController::class)->group(function() {
     Route::get('/publish', 'publishedList')->name('publish');
@@ -84,7 +89,7 @@ Route::controller(GuestController::class)->group(function() {
 });
 
 Route::controller(ManagerController::class)->group(function() {
-    Route::get('/manager-dashboard', 'dashboard');
+    Route::get('/manager-magazines', 'getMagazinesByManager')->name('manager-magazines');
     Route::get('/manager-report', 'report');
 });
 

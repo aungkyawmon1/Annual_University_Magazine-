@@ -131,6 +131,17 @@ class CoordinatorController extends Controller
 
         return $query;
     }
+    public function guestListCoordinator() {
+        $departmentId = Auth::user()->department_id;
+        $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
+        $guests = DB::table('users')
+            ->select('username', 'users.created_at', 'users.updated_at', 'departments.name as department_name')
+            ->join('departments', 'users.department_id', '=', 'departments.id')
+            ->where('role_id', 5)
+            ->where('departments.id',$departmentId)
+            ->get();
+        return view('coordinator.guests')->with("guests", $guests)->with('currentAcademicYear',$currentAcademicYear);
+    }
     private function findMagazine($id)
     {
         return Magazine::where('id', $id)->where('department_id', Auth::user()->department_id)->firstOrFail();

@@ -42,7 +42,7 @@
                <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="post-container">
                         <div class="img-container">
-                            <img src="{{ asset('storage/uploads/img/' . $magazine->image_url) }}" alt="Magazine Image">
+                            <img src="{{ asset('storage/uploads/' . $magazine->image_url) }}" alt="Magazine Image">
                         </div>
                         <label class="mt-2 caption">
                             {{ $magazine->title }}
@@ -64,7 +64,10 @@
                         <div class="mt-2">
                                <form action="{{ route('publishMagazine', ['id' => $magazine->magazine_id]) }}" method="POST">
         @csrf <!-- CSRF token for security -->
-        <button type="submit" class="btn btn-primary w-100">Publish</button>
+{{--        <button type="submit" class="btn btn-primary w-100" disabled>Publish</button>--}}
+                                   <button type="submit" class="btn btn-primary w-100" {{ $magazine->is_published ? 'disabled' : '' }}>
+                                       Publish
+                                   </button>
     </form>
                         </div>
                     </div>

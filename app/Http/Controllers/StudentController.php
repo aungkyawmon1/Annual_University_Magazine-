@@ -116,22 +116,22 @@ class StudentController extends Controller
     public function getMagazinesByUserId() {
         $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
         $userId = Auth::user()->id;
-        $departmentName = Auth::user()->department->name;
-       
+        $departmentName = "IT";
+
         $magazines = Magazine::with(['comments.user' => function ($query) {
                                 $query->where('role_id', 3); // Filter to only include coordinator's comments
                              }])
                              ->where('user_id', $userId)
                              ->get();
-    
-       
+
+
         return view('student.dashboard', [
             'magazines' => $magazines,
             'currentAcademicYear' => $currentAcademicYear,
             'departmentName' => $departmentName,
         ]);
     }
-    
+
 
     public function preview($id) {
         $magazine = DB::table('magazine')

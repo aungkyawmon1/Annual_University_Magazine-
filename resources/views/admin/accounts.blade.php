@@ -13,7 +13,10 @@
     <!-- bootstrap 5.3.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- custom css -->
-    <link href="../../css/customTheme.css" rel="stylesheet">
+    <link href="../css/customTheme.css" rel="stylesheet">
+    <!-- data table css -->
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,40 +27,39 @@
                 <img src="../../img/Plus-icon.svg" class="me-3" />Create new account
             </button>
         </div>
-        <div class="row mt-4 d-flex flex-row justify-content-between">
-            <div class="d-flex flex-row align-items-center justify-content-between">
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                      <a class="nav-link activeWhite" aria-current="page" href="#">All</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Manager</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Coordinator</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" aria-disabled="true">Student</a>
-                    </li>
-                  </ul>
-                  <div class="d-flex gap-3">
-                    <div class="mb-3">
-                        <input type="email" class="form-control" id="search" placeholder="Search name, email, phone">
-                      </div>
-                  </div>
-            </div>
-        </div>
+{{--        <div class="row mt-4 d-flex flex-row justify-content-between">--}}
+{{--            <div class="d-flex flex-row align-items-center justify-content-between">--}}
+{{--                <ul class="nav nav-pills">--}}
+{{--                    <li class="nav-item">--}}
+{{--                      <a class="nav-link activeWhite" aria-current="page" href="#">All</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                      <a class="nav-link" href="#">Manager</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                      <a class="nav-link" href="#">Coordinator</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                      <a class="nav-link disabled" aria-disabled="true">Student</a>--}}
+{{--                    </li>--}}
+{{--                  </ul>--}}
+{{--                  <div class="d-flex gap-3">--}}
+{{--                    <div class="mb-3">--}}
+{{--                        <input type="email" class="form-control" id="search" placeholder="Search name, email, phone">--}}
+{{--                      </div>--}}
+{{--                  </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}{{-- filter remove by zawwaisoe because of lot--}}
         <div class="mt-4">
             <div class="table-responsive">
-                <table class="table my-table">
-                    <thead class="table">
+                    <table id="table" class="table table-striped" style="width:100%">
+                        <thead class="table">
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Account name</th>
                         <th scope="col">Role</th>
                         <th scope="col">Faculty</th>
                         <th scope="col">Created date</th>
-                        <th scope="col"> </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -66,8 +68,8 @@
                             <tr>
                                 <th>{{ $cont->id }}</th>
                                 <th>{{ $cont->username }}</th>
-                                <th>{{ $cont->role_id }}</th>
-                                <th>{{ $cont->department_id }}</th>
+                                <th>{{ $cont->role_name }}</th>
+                                <th>{{ $cont->department_name }}</th>
                                 <th>{{ $cont->address }}</th>
 {{--                                <th><a href="/accounts/{{ $cont->id }}/edit" class="btn btn-primary">Edit</a>--}}
 {{--                                    <a href="/delete/{{ $cont->id }}" class="btn btn-danger">Delete</a>--}}
@@ -84,25 +86,34 @@
                 </table>
             </div>
         </div>
-        <div class="mt-5">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link">Previous</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item "><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+{{--        <div class="mt-5">--}}
+{{--            <nav aria-label="Page navigation example">--}}
+{{--              <ul class="pagination justify-content-center">--}}
+{{--                <li class="page-item disabled">--}}
+{{--                  <a class="page-link">Previous</a>--}}
+{{--                </li>--}}
+{{--                <li class="page-item active"><a class="page-link" href="#">1</a></li>--}}
+{{--                <li class="page-item "><a class="page-link" href="#">2</a></li>--}}
+{{--                <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
+{{--                <li class="page-item">--}}
+{{--                  <a class="page-link" href="#">Next</a>--}}
+{{--                </li>--}}
+{{--              </ul>--}}
+{{--            </nav>--}}
+{{--          </div>--}}
     </div>
 
 
-    <!-- js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+<script>
+    new DataTable('#table');
+</script>
+
+
+<!-- js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

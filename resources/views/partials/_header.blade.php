@@ -8,9 +8,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Contributions</a>
-                </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
+                    <li class="nav-item">
+                        <a class="nav-link" href="magazines">Contributions</a>
+                    </li>
+                @endif
 
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
                     <li class="nav-item">
@@ -24,7 +26,12 @@
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "3")
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Guests</a>
+                        <a class="nav-link" href="coordinator-guests">Guests</a>
+                    </li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "3")
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard">Dashboard</a>
                     </li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
@@ -48,7 +55,6 @@
                         <a class="nav-link" href="guests">Guest Accounts</a>
                     </li>
                 @endif
-
 
 
             </ul>
