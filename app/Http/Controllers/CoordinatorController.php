@@ -43,7 +43,7 @@ class CoordinatorController extends Controller
         $unpublishedMagazines = Magazine::where('published', false)
             ->where('department_id', $departmentId)
             ->get();
-        return view('coordinator.contributions', compact('unpublishedMagazines'));
+        return view('Coordinator.contributions', compact('unpublishedMagazines'));
     }
 
 
@@ -140,7 +140,7 @@ class CoordinatorController extends Controller
             ->where('role_id', 5)
             ->where('departments.id',$departmentId)
             ->get();
-        return view('coordinator.guests')->with("guests", $guests)->with('currentAcademicYear',$currentAcademicYear);
+        return view('Coordinator.guests')->with("guests", $guests)->with('currentAcademicYear',$currentAcademicYear);
     }
     private function findMagazine($id)
     {

@@ -44,7 +44,7 @@ class AdminController extends Controller
             ->join('departments', 'users.department_id', '=', 'departments.id')
             ->where('role_id', 5)
             ->get();
-        return view('coordinator.guests')->with("guests", $guests)->with('currentAcademicYear',$currentAcademicYear);
+        return view('Coordinator.guests')->with("guests", $guests)->with('currentAcademicYear',$currentAcademicYear);
     }
 
 
