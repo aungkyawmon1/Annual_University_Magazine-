@@ -39,6 +39,7 @@ Route::controller(AuthenticationController::class)->group(function() {
 });
 
 Route::controller(AdminController::class)->group(function() {
+    Route::post('/edit', 'editClosureDate')->name('edit');
     Route::get('/accounts', 'accountList')->name('accounts');
     Route::get('/accounts/create-account', 'createAccountForm')->name('create-account');
     Route::post('/create-account', 'createAccount')->name('create-account');
@@ -85,6 +86,7 @@ Route::controller(StudentController::class)->group(function() {
 });
 
 Route::controller(GuestController::class)->group(function() {
+    Route::get('/guest-dashboard', 'publishedList')->name('guest-dashboard');
     Route::get('/guest/{department_id}', 'publishedList');
 });
 

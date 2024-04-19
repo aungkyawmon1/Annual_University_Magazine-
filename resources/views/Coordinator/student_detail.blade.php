@@ -26,7 +26,8 @@
         <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
             <img src="../../img/alert-circle.svg" alt="icon"/>
             <div>
-              Closure date is <strong> {{$currentAcademicYear->closure_date}}</strong>
+
+              Closure date is <strong> {{ date('d F, Y', strtotime($currentAcademicYear->closure_date)) }}</strong>
             </div>
         </div>
         <div class="my-3">

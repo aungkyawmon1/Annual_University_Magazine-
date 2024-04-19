@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
-    public function publishedList($department_id) {
-        $user_id = auth()->user()->id;
+    public function publishedList() {
+        $departmentId = Auth::user()->department_id;
         //$department_id = auth()->user()->department_id;
         $magazine = DB::table('magazine')
-            ->where('magazine.department_id', $department_id)
+            ->where('magazine.department_id', $departmentId)
             ->join('departments', 'magazine.department_id', '=', 'departments.id')
             ->join('users', 'magazine.user_id', '=', 'users.id')
             ->where('is_published', true)

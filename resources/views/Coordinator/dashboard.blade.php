@@ -29,7 +29,8 @@
         <img src="../../img/alert-circle.svg" alt="icon"/>
         <div>
 
-            Closure date is <strong> {{$closureDate}}</strong>
+
+            Closure date is <strong> {{ date('d F, Y', strtotime($closureDate)) }}</strong>
         </div>
     </div>
     {{--    @foreach ($cards as $cont)--}}

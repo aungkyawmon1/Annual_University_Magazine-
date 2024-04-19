@@ -24,14 +24,16 @@
 @include('partials._header')
 <div class="container">
     <h3 class="mt-3">Magazine contribution for {{$currentAcademicYear->academic_year}} Academic Year</h3>
-    <h5 class="mt-3 gray-600">{{$departmentName}} Department</h5>
+    <h5 class="mt-3 gray-600">{{$departmentName->name}} Department</h5>
 
     <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
         <img src="./img/alert-circle.svg" alt="icon"/>
         <div>
-            Closure date is <strong>{{$currentAcademicYear->closure_date}}</strong>
+
+            Closure date is <strong> {{ date('d F, Y', strtotime($currentAcademicYear->closure_date)) }}</strong>
         </div>
     </div>
+
 
     <div class="row mt-4">
         @php

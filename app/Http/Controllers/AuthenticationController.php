@@ -38,7 +38,7 @@ class AuthenticationController extends Controller
             }
             else if(Auth::user()->role_id == 3) {
 //                return redirect()->route('dashboard');
-                return redirect()->route('Coordinator.dashboard');
+                return redirect()->route('coordinator.dashboard');
 //                ->withSuccess('You have successfully logged in!');
             }
             else if(Auth::user()->role_id == 4) {
@@ -49,10 +49,11 @@ class AuthenticationController extends Controller
 //                ->withSuccess('You have successfully logged in!')
 
             }
-            else if(Auth::user()->role_id == 5) {
+            else if(Auth::user()->role_id == 5) { // guests
                 $departmentId = Auth::user()->department_id;
 //                return redirect()->route('guests');
-                return redirect('/guest/'.$departmentId); // fix later
+                return redirect()->route('guest-dashboard');
+
 
 //                return redirect()->route('guest/dashboard')
 //                ->withSuccess('You have successfully logged in!');
@@ -121,7 +122,7 @@ class AuthenticationController extends Controller
             ->select('magazines.id','magazines.user_id', 'magazines.department_id', 'magazines.title', 'magazines.description', 'magazines.image_url', 'magazines.file_url', 'magazines.created_at', 'departments.name as department_name', 'users.username')
             ->get();*/
             $request->session()->regenerate();
-            return redirect()->route('guest/'. $department_id);
+                return redirect()->route('guest-dashboard');
 //            return Redirect::to('guest/'.$department_id);
             //return view('guest.index')->with("magazines", $magazines);
             /*return redirect()->route('publish')

@@ -59,7 +59,7 @@
                         <th scope="col">Account name</th>
                         <th scope="col">Role</th>
                         <th scope="col">Faculty</th>
-                        <th scope="col">Created date</th>
+                        <th scope="col">Address</th>
                       </tr>
                     </thead>
                     <tbody>

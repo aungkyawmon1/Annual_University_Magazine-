@@ -16,7 +16,7 @@
 
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Admin Reports</a>
+                        <a class="nav-link" href="admin-report">Admin Reports</a>
                     </li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "2")
@@ -58,88 +58,31 @@
 
 
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <span class="nav-link">
+                       {{\Illuminate\Support\Facades\Auth::user()->first_name}} :
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
+                            Admin
+                        @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == "2")
+                            Manager
+                        @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == "3")
+                            Coordinator
+                        @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == "4")
+                            Student
+                        @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == "5")
+                            Guests
+                        @endif
+                    </span>
+                </li>
+            </ul>
             <div class="d-flex gap-3">
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "2")
-                    <div class="position-relative">
-                        <button type="button" class="btn nav-btn btn-sm" data-bs-toggle="dropdown"
-                                data-bs-auto-close="outside" aria-expanded="false">
-                            <img src="../../img/notification.svg" alt="notification">
-                            <span
-                                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                            <span class="visually-hidden">New alerts</span>
-                        </span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end noti-dropdown shadow-sm">
-                            <h1 class="modal-title fs-5 mb-3" id="exampleModalLabel">Notifications</h1>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> uploaded a new contribution.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> uploaded a new contribution.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                            <div class="noti-content">
-                                <img src="../../img/notification.svg" alt="icon"/>
-                                <div class="noti-info">
-                                    <span><strong>John Cooper</strong> registerd as guest.</span>
-                                    <small>2 mins ago.</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
                 <button type="button" class="btn nav-btn btn-sm"><a class="nav-link" href="{{ route('logout') }}"><img
-                            src="../../img/logout.svg" alt="logout"></a></button>
+                                src="../../img/logout.svg" alt="logout"></a></button>
             </div>
         </div>
     </div>

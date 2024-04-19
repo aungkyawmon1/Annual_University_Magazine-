@@ -120,7 +120,19 @@ class ManagerController extends Controller
                         ->join('departments', 'magazine.department_id', '=', 'departments.id')
                         ->select('magazine.magazine_id as id','magazine.user_id', 'magazine.magazine_id','magazine.department_id', 'magazine.title', 'magazine.description', 'magazine.image_url', 'magazine.file_url', 'magazine.created_at', 'departments.name as department_name', 'users.username')
                         ->get();
+        $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
+        $userId = Auth::user()->id;
+        $departmentName = DB::table('departments as d')
+            ->join('users as u', 'u.department_id', '=', 'd.id')
+            ->select('d.name')
+            ->where('u.id', $userId)
+            ->first();
+        return view('manager.reports', [
+            'magazines' => $magazines,
+            'cards' => $objectsArray,
+            'currentAcademicYear' => $currentAcademicYear,
+            'departmentName' => $departmentName
 
-        return view("manager.reports")->with('magazines', $magazines)->with('cards', $objectsArray);
+        ]);
     }
 }

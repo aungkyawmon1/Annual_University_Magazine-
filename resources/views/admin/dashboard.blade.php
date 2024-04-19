@@ -29,7 +29,8 @@
             <div class="d-flex gap-2">
             <img src="{{ asset('img/alert-circle.svg') }}" alt="icon"/>
                 <div>
-                  Closure date is <strong> 19 April, 2024</strong>
+
+                  Closure date is <strong> {{ date('d F, Y', strtotime($currentAcademicYear->closure_date)) }}</strong>
                 </div>
             </div>
            <div data-bs-toggle="modal" data-bs-target="#create_event">
@@ -39,26 +40,28 @@
            </div>
         </div>
 
-        <!-- Create event modal -->
+        <!-- Update event modal -->
+    <form action="{{ route('edit') }}" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="modal fade" id="create_event" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Create event</h1>
+
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update event</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <label>Choose closure date</label>
+                    <br>
                     <div class="mb-3">
-                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
-                        <input type="datetime-local" class="form-control" id="event-closure-date" placeholder="Choose event closure date">
+                        <input name="closure_date" type="datetime-local" class="form-control" id="event-closure-date" placeholder="Choose event closure date">
                     </div>
+                    <label>Academic Year</label>
+                    <br>
                     <div class="mb-3">
                         <!-- <label for="article-caption" class="form-label">Caption</label> -->
-                        <input type="text" class="form-control" id="event-caption" placeholder="Caption">
-                    </div>
-                    <div class="mb-3">
-                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
-                        <input type="number" class="form-control" id="academic-year" placeholder="Academic year">
+                        <input name="academic_year" type="text" class="form-control" id="academic-year" placeholder="Academic year">
                     </div>
                     <div class="form-check form-check-inline mb-3">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" required>
@@ -67,12 +70,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>
             </div>
         </div>
-
+    </form>
     <div class="row mt-4">
         <h5 class="mb-3">Published contributions</h5>
 

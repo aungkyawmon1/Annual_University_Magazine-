@@ -116,7 +116,11 @@ class StudentController extends Controller
     public function getMagazinesByUserId() {
         $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
         $userId = Auth::user()->id;
-        $departmentName = "IT";
+        $departmentName = DB::table('departments as d')
+            ->join('users as u', 'u.department_id', '=', 'd.id')
+            ->select('d.name')
+            ->where('u.id', $userId)
+            ->first();
 
         $magazines = Magazine::with(['comments.user' => function ($query) {
                                 $query->where('role_id', 3); // Filter to only include coordinator's comments
