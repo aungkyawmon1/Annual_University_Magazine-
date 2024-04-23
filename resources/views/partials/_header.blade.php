@@ -1,3 +1,17 @@
+<?php
+// Get the current URL
+$currentUrl = $_SERVER['REQUEST_URI'];
+//remove / in current url
+$currentUrl = str_replace('/', '', $currentUrl);
+// Define an array with links and their corresponding display text
+$links = [
+    '/admin-reports' => 'Admin Reports',
+    '/guests' => 'Guests',
+    '/accounts' => 'Accounts',
+    // Add more links as needed
+];
+
+?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
         <a class="navbar-brand mr-5" href="#"><img src="{{ asset('img/logo.png') }}"
@@ -10,52 +24,49 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
                     <li class="nav-item">
-                        <a class="nav-link" href="magazines">Contributions</a>
+                        <a class="nav-link <?php echo ($currentUrl == 'magazines') ? 'active' : ''; ?>"
+                           href="magazines">Contributions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'admin-report') ? 'active' : ''; ?>"
+                           href="admin-report">Admin Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'accounts' || $currentUrl == 'create-account') ? 'active' : ''; ?>"
+                           href="accounts">Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'guests') ? 'active' : ''; ?>" href="guests">Guest
+                            Accounts</a>
                     </li>
                 @endif
 
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin-report">Admin Reports</a>
-                    </li>
-                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "2")
                     <li class="nav-item">
-                        <a class="nav-link" href="guests">Guests</a>
+                        <a class="nav-link <?php echo ($currentUrl == 'manager-magazines') ? 'active' : ''; ?>"
+                           href="manager-magazines">Contributions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'guests') ? 'active' : ''; ?>" href="guests">Guests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'accounts') ? 'active' : ''; ?>" href="accounts">Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'manager-report') ? 'active' : ''; ?>"
+                           href="manager-report">Reports</a>
                     </li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == "3")
                     <li class="nav-item">
-                        <a class="nav-link" href="coordinator-guests">Guests</a>
+                        <a class="nav-link <?php echo ($currentUrl == 'coordinator-guests') ? 'active' : ''; ?>"
+                           href="{{ url('/coordinator-guests') }}">Guests</a>
                     </li>
-                @endif
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "3")
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard">Dashboard</a>
+                        <a class="nav-link <?php echo ($currentUrl == 'dashboard' || preg_match('/^coordinatorstudent-detail\d+$/', $currentUrl)) ? 'active' : ''; ?>"
+                           href="{{ url('/dashboard') }}">Dashboard</a>
                     </li>
                 @endif
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
-                    <li class="nav-item">
-                        <a class="nav-link" href="accounts">Accounts</a>
-                    </li>
-                @endif
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "2")
-                    <li class="nav-item">
-                        <a class="nav-link" href="accounts">Accounts</a>
-                    </li>
-                @endif
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "2")
-                    <li class="nav-item">
-                        <a class="nav-link" href="manager-report">Reports</a>
-                    </li>
-                @endif
-
-                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "1")
-                    <li class="nav-item">
-                        <a class="nav-link" href="guests">Guest Accounts</a>
-                    </li>
-                @endif
-
 
             </ul>
             <ul class="navbar-nav">
@@ -82,7 +93,7 @@
             </ul>
             <div class="d-flex gap-3">
                 <button type="button" class="btn nav-btn btn-sm"><a class="nav-link" href="{{ route('logout') }}"><img
-                                src="../../img/logout.svg" alt="logout"></a></button>
+                            src="../../img/logout.svg" alt="logout"></a></button>
             </div>
         </div>
     </div>

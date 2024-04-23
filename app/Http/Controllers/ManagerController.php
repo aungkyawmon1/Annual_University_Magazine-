@@ -148,8 +148,16 @@ class ManagerController extends Controller
         $submissions = Magazine::where('academic_year_id', $currentAcademicYear->id)->get();
         $zipFileName = 'final-submissions-' . $currentAcademicYear->academic_year . '.zip';
         $zipPath = storage_path('app/public/' . $zipFileName);
-        $zip = new ZipArchive;
+        // Ensure the directory for the zip file exists
+        $zipDirectory = dirname($zipPath);
+
+        if (!file_exists($zipDirectory)) {
+            mkdir($zipDirectory, 0755, true);
+
+        }
+
         if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
+
             foreach ($submissions as $submission) {
                 $documentPath = storage_path('app/public/uploads/' . $submission->file_url);
                 $imagePath = storage_path('app/public/uploads/' . $submission->image_url);
@@ -162,8 +170,10 @@ class ManagerController extends Controller
                 }
             }
             $zip->close();
+
             return response()->download($zipPath)->deleteFileAfterSend(true);
         } else {
+
             return back()->withErrors(['error' => 'Could not create the ZIP file.']);
         }
     }

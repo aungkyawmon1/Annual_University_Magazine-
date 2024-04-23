@@ -36,6 +36,11 @@
     $finalClosureDateTime = \Carbon\Carbon::parse($currentAcademicYear->final_closure_date);
 @endphp
 
+    <?php
+    echo $currentDateTime;
+    echo "<br>";
+    echo $finalClosureDateTime;
+    ?>
 @if($currentDateTime->greaterThanOrEqualTo($finalClosureDateTime))
     <div class="alert alert-success mt-4" role="alert">
         The final closure date has passed. You can now download all submissions.
