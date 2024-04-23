@@ -93,5 +93,6 @@ Route::controller(GuestController::class)->group(function() {
 Route::controller(ManagerController::class)->group(function() {
     Route::get('/manager-magazines', 'getMagazinesByManager')->name('manager-magazines');
     Route::get('/manager-report', 'report');
+    Route::get('/download-final-submissions', 'downloadFinalSubmissions')->name('manager.downloadFinalSubmissions');
 });
 

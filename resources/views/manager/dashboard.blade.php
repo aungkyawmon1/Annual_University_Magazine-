@@ -31,6 +31,21 @@
         </div>
     </div>
 
+    @php
+    $currentDateTime = \Carbon\Carbon::now();
+    $finalClosureDateTime = \Carbon\Carbon::parse($currentAcademicYear->final_closure_date);
+@endphp
+
+@if($currentDateTime->greaterThanOrEqualTo($finalClosureDateTime))
+    <div class="alert alert-success mt-4" role="alert">
+        The final closure date has passed. You can now download all submissions.
+        <a href="{{ route('manager.downloadFinalSubmissions') }}" class="btn btn-primary">
+            Download All Submissions
+        </a>
+    </div>
+@endif
+
+
     <div class="row mt-4">
         @if (count($magazines) > 0)
             @foreach ($magazines as $magazine)
