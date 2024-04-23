@@ -51,7 +51,8 @@
 
         @if (count($magazines) > 0)
             @foreach ($magazines as $magazine)
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
+                <div class="col-12 col-md-4 col-lg-3 mb-4" data-bs-toggle="modal"
+                                    data-bs-target="#update-{{ $magazine->magazine_id}}">
                     <div class="post-container">
                         <div class="img-container">
                             <img src="{{ asset('storage/uploads/'.$magazine->image_url) }}" alt="img">
@@ -98,6 +99,52 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="update-{{ $magazine->magazine_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update contribution</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                    <input type="hidden" id="id" name="id" value="{{$magazine->magazine_id}}">
+                        <div class="mb-4">
+                            <label class="custom-file-upload file" for="doc_files">
+                                <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px;" alt="upload"/> <br>
+                                Upload contribution (docx, pdf)
+                            </label>
+                            <input name="doc_file" type="file" id="doc_file" multiple>
+                        </div>
+                        <div class="mb-4">
+                            <label class="custom-file-upload file" for="img_file">
+                                <img src="./img/CloudArrowUp.svg"
+                                     style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload"/> <br>
+                                Upload photo
+                            </label>
+                            <input name="img_file" type="file" id="img_file" multiple>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="article-caption" class="form-label">Caption</label> -->
+                            <input type="text" name="title" class="form-control" id="article-caption"
+                                   placeholder="Caption" value="{{$magazine->title}}">
+                        </div>
+                        <div class="form-check form-check-inline mb-3">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                                   required>
+                            <label class="form-check-label" for="inlineCheckbox1">Agree <span class="blue-600">terms & conditions</span></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
             @endforeach
         @else
             <p>No Data</p>

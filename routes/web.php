@@ -60,6 +60,7 @@ Route::controller(AdminController::class)->group(function() {
 // Student routes
 Route::controller(StudentController::class)->group(function() {
     Route::post('/upload', 'uploadMagazine')->name('upload');
+    Route::post('/update', 'updateMagazine')->name('update');
     Route::get('/download/{filename}', 'download')->name('download');
     Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
     Route::get('/magazine-preview', 'getMagazinesByUserId')->name('student-magazines');
