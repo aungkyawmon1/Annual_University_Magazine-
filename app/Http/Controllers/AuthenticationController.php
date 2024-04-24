@@ -11,52 +11,39 @@ use DB;
 
 class AuthenticationController extends Controller
 {
-    public function loginView() {
+    public function loginView()
+    {
         return view('login');
     }
 
-    public function login (Request $request) {
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-        if(Auth::attempt($credentials))
-        {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(Auth::user()->role_id == 1) {
+            if (Auth::user()->role_id == 1) {
                 return redirect()->route('magazines')
                     ->withSuccess('You have successfully logged in!');
-//                return view('admin.dashboard');
-//                return redirect()->route('admin.dashboard')
-//                ->withSuccess('You have successfully logged in!');
-            }
-            else if(Auth::user()->role_id == 2) {
+
+            } else if (Auth::user()->role_id == 2) {
                 return redirect()->route('manager-magazines');
-//                return view('manager.dashboard');
-//                return redirect()->route('manager/dashboard')
-//                ->withSuccess('You have successfully logged in!');
-            }
-            else if(Auth::user()->role_id == 3) {
-//                return redirect()->route('dashboard');
+
+            } else if (Auth::user()->role_id == 3) {
+
                 return redirect()->route('coordinator.dashboard');
-//                ->withSuccess('You have successfully logged in!');
-            }
-            else if(Auth::user()->role_id == 4) {
+
+            } else if (Auth::user()->role_id == 4) {
                 return redirect()->route('student-magazines')
                     ->withSuccess('You have successfully logged in!');
-//                return view('student-magazines');
-//                return redirect()->route('student.dashboard');
-//                ->withSuccess('You have successfully logged in!')
 
-            }
-            else if(Auth::user()->role_id == 5) { // guests
+            } else if (Auth::user()->role_id == 5) { // guests
                 $departmentId = Auth::user()->department_id;
-//                return redirect()->route('guests');
+
                 return redirect()->route('guest-dashboard');
 
-
-//                return redirect()->route('guest/dashboard')
-//                ->withSuccess('You have successfully logged in!');
             }
         }
 
@@ -65,25 +52,22 @@ class AuthenticationController extends Controller
         ]);
     }
 
-    public function registerView() {
+    public function registerView()
+    {
         return view('guest.register');
     }
-    public function guestLoginView() {
+
+    public function guestLoginView()
+    {
         return view('guest.login');
     }
-    public function register (Request $request) {
+
+    public function register(Request $request)
+    {
         $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-
-        //$user = User::select('username')->where('email', $request->email)->first();
-
-        /*if($user != null) {
-            return back()->withErrors([
-                'error' => 'Email already exist.',
-            ]);
-        }*/
 
         User::create([
             'username' => $request->username,
@@ -97,23 +81,23 @@ class AuthenticationController extends Controller
         return redirect('/guestLogin');
     }
 
-    public function guestLogin (Request $request) {
+    public function guestLogin(Request $request)
+    {
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials))
-        {
+        if (Auth::attempt($credentials)) {
             $department_id = $request->department_id;
 
             $guests = DB::table('users')
-            ->select('*')
-            ->where('department_id', $department_id)
-            ->where('username', $request->username)
-            //->where('password', Hash::make($request->password))
-            ->get();
-            if($guests) {
+                ->select('*')
+                ->where('department_id', $department_id)
+                ->where('username', $request->username)
+                //->where('password', Hash::make($request->password))
+                ->get();
+            if ($guests) {
                 /*$magazines = DB::table('magazines')
             ->where('magazines.department_id', $department_id)
             ->join('departments', 'magazines.department_id', '=', 'departments.id')
@@ -121,30 +105,26 @@ class AuthenticationController extends Controller
             ->where('is_published', true)
             ->select('magazines.id','magazines.user_id', 'magazines.department_id', 'magazines.title', 'magazines.description', 'magazines.image_url', 'magazines.file_url', 'magazines.created_at', 'departments.name as department_name', 'users.username')
             ->get();*/
-            $request->session()->regenerate();
+                $request->session()->regenerate();
                 return redirect()->route('guest-dashboard');
-//            return Redirect::to('guest/'.$department_id);
-            //return view('guest.index')->with("magazines", $magazines);
-            /*return redirect()->route('publish')
-                    ->withSuccess('You have successfully logged in!');
-//                return view('admin.dashboard');*/
-//                return redirect()->route('admin.dashboard')
-//                ->withSuccess('You have successfully logged in!');
+
+            }
+
+            return back()->withErrors([
+                'error' => 'Your provided credentials do not match in our records.',
+            ]);
         }
-
-        return back()->withErrors([
-            'error' => 'Your provided credentials do not match in our records.',
-        ]);
-    }
     }
 
-    public function logout() {
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
         return Redirect('login');
     }
 
-    public function guestLogout() {
+    public function guestLogout()
+    {
         Session::flush();
         Auth::logout();
         return Redirect('guestLogin');
