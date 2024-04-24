@@ -139,8 +139,7 @@ class ManagerController extends Controller
     }
 
 
-    public function downloadFinalSubmissions(Request $request)
-    {
+    public function downloadFinalSubmissions(Request $request){
         $currentAcademicYear = AcademicYear::where('status', 'ACTIVE')->first();
         if (Carbon::now()->lessThan(new Carbon($currentAcademicYear->final_closure_date))) {
             return back()->withErrors(['error' => 'The final closure date has not passed yet.']);
@@ -150,6 +149,7 @@ class ManagerController extends Controller
         $zipPath = storage_path('app/public/' . $zipFileName);
         $zip = new ZipArchive;
         if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
+
             foreach ($submissions as $submission) {
                 $documentPath = storage_path('app/public/uploads/' . $submission->file_url);
                 $imagePath = storage_path('app/public/uploads/' . $submission->image_url);
@@ -162,7 +162,7 @@ class ManagerController extends Controller
                 }
             }
             $zip->close();
-            return response()->download($zipPath)->deleteFileAfterSend(true);
+            return response()->download($zipPath)->deleteFileAfterSend(false);
         } else {
             return back()->withErrors(['error' => 'Could not create the ZIP file.']);
         }

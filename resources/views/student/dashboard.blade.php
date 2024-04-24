@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet">
     <!-- bootstrap 5.3.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -31,6 +31,8 @@
         <div>
 
             Closure date is <strong> {{ date('d F, Y', strtotime($currentAcademicYear->closure_date)) }}</strong>
+            But you can still update your contribution before
+            <strong> {{ date('d F, Y', strtotime($currentAcademicYear->final_closure_date)) }} </strong>
         </div>
     </div>
 
@@ -38,6 +40,7 @@
     <div class="row mt-4">
         @php
             $isBeforeClosureDate = \Carbon\Carbon::now()->isBefore($currentAcademicYear->closure_date);
+            $isBeforeFinalClosureDate = \Carbon\Carbon::now()->isBefore($currentAcademicYear->final_closure_date);
         @endphp
 
         @if ($isBeforeClosureDate)
@@ -69,6 +72,16 @@
                                     data-bs-target="#commentsModal-{{ $magazine->magazine_id }}">Comment
                             </button>
                         </div>
+                        @if ($isBeforeFinalClosureDate)
+                            <div class="d-flex justify-content-between mt-2 gap-3" data-bs-toggle="modal"
+                                 data-bs-target="#update-{{ $magazine->magazine_id}}">
+                                <button
+                                        class="btn btn-outline w-100">Edit
+                                </button>
+
+                            </div>
+                        @endif
+
                     </div>
                 </div>
 
@@ -98,6 +111,64 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="update-{{ $magazine->magazine_id}}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Update contribution</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+
+                                <div class="modal-body">
+                                    <input type="hidden" id="id" name="id"
+                                           value="{{ preg_replace('/\D/', '', $magazine->magazine_id) }}">
+                                    <div class="mb-4">
+                                        <label class="custom-file-upload file" for="doc_files">
+                                            <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px;"
+                                                 alt="upload"/> <br>
+                                            Upload contribution (docx, pdf)
+                                        </label>
+                                        <input required name="doc_file" type="file" id="doc_file" multiple>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="custom-file-upload file" for="img_file">
+                                            <img src="./img/CloudArrowUp.svg"
+                                                 style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload"/>
+                                            <br>
+                                            Upload photo
+                                        </label>
+                                        <input required name="img_file" type="file" id="img_file" multiple>
+                                    </div>
+                                    <div class="mb-3">
+                                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
+                                        <input type="text" name="title" class="form-control" id="article-caption"
+                                               placeholder="Caption" value="{{$magazine->title}}">
+                                    </div>
+                                    <div class="form-check form-check-inline mb-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                               value="option1" required>
+                                        <label class="form-check-label" for="unassociatedLabel">
+                                            Agree
+                                            <a href="{{ url('/terms') }}" target="_blank">
+                                                <span class="blue-600">terms & conditions</span>
+                                            </a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         @else
             <p>No Data</p>
@@ -121,7 +192,7 @@
                                 <img src="./img/CloudArrowUp.svg" style="width: 32px; height: 32px;" alt="upload"/> <br>
                                 Upload contribution (docx, pdf)
                             </label>
-                            <input name="doc_file" type="file" id="doc_file" multiple>
+                            <input required name="doc_file" type="file" id="doc_file" multiple>
                         </div>
                         <div class="mb-4">
                             <label class="custom-file-upload file" for="img_file">
@@ -129,17 +200,22 @@
                                      style="width: 32px; height: 32px; margin-bottom: .5rem;" alt="upload"/> <br>
                                 Upload photo
                             </label>
-                            <input name="img_file" type="file" id="img_file" multiple>
+                            <input required name="img_file" type="file" id="img_file" multiple>
                         </div>
                         <div class="mb-3">
                             <!-- <label for="article-caption" class="form-label">Caption</label> -->
-                            <input type="text" name="title" class="form-control" id="article-caption"
+                            <input required type="text" name="title" class="form-control" id="article-caption"
                                    placeholder="Caption">
                         </div>
                         <div class="form-check form-check-inline mb-3">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
-                                   required>
-                            <label class="form-check-label" for="inlineCheckbox1">Agree <span class="blue-600">terms & conditions</span></label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                   value="option1" required>
+                            <label class="form-check-label" for="unassociatedLabel">
+                                Agree
+                                <a href="{{ url('/terms') }}" target="_blank">
+                                    <span class="blue-600">terms & conditions</span>
+                                </a>
+                            </label>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -27,6 +27,9 @@ Route::post('/magazines/{magazine}/comments', [CoordinatorController::class, 'po
 Route::get('/student/preview/{magazine}', [StudentController::class, 'preview'])->name('student.preview');
 Route::get('/dashboard', [CoordinatorController::class, 'index'])->name('coordinator.dashboard');
 Route::get('/coordinator-guests', [CoordinatorController::class, 'guestListCoordinator'])->name('coordinator.guests');
+Route::get('/terms', function () {
+    return view('partials.terms');
+});
 Route::controller(AuthenticationController::class)->group(function() {
     Route::get('/login', 'loginView')->name('login.view');
     Route::post('/login', 'login')->name('login');
@@ -41,7 +44,7 @@ Route::controller(AuthenticationController::class)->group(function() {
 Route::controller(AdminController::class)->group(function() {
     Route::post('/edit', 'editClosureDate')->name('edit');
     Route::get('/accounts', 'accountList')->name('accounts');
-    Route::get('/accounts/create-account', 'createAccountForm')->name('create-account');
+    Route::get('/create-account', 'createAccountForm')->name('create-account');
     Route::post('/create-account', 'createAccount')->name('create-account');
 
     Route::get('/events', 'eventList')->name('events');
@@ -57,6 +60,7 @@ Route::controller(AdminController::class)->group(function() {
 // Student routes
 Route::controller(StudentController::class)->group(function() {
     Route::post('/upload', 'uploadMagazine')->name('upload');
+    Route::post('/update', 'updateMagazine')->name('update');
     Route::get('/download/{filename}', 'download')->name('download');
     Route::get('/student-magazines', 'getMagazinesByUserId')->name('student-magazines');
     Route::get('/magazine-preview', 'getMagazinesByUserId')->name('student-magazines');

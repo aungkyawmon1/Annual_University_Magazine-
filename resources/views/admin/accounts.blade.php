@@ -23,8 +23,8 @@
 @include('partials._header')
     <div class="container">
         <div class="mt-3">
-            <button  onclick="window.location='/accounts/create-account'" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#comments">
-                <img src="../../img/Plus-icon.svg" class="me-3" />Create new account
+            <button  onclick="window.location='/create-account'" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#comments">
+                <img src="../../img/Plus-icon.svg" class="me-3 btn btn-md btn-primary" />Create new account
             </button>
         </div>
 {{--        <div class="row mt-4 d-flex flex-row justify-content-between">--}}

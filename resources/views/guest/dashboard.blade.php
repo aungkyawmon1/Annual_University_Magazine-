@@ -24,7 +24,7 @@
         <div class="alert alert-danger d-flex align-items-center gap-3 mt-4" role="alert">
             <img src="../../img/alert-circle.svg" alt="icon"/>
             <div>
-              Closure date is <strong> 19 April, 2024</strong>
+                These are all <strong>published</strong> contributions
             </div>
         </div>
 
@@ -46,8 +46,9 @@
                                 <span class="post-info">{{$cont->created_at}}</span>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mt-2 gap-3">
-                        <button type="button" class="btn btn-outline w-100"><a href="/preview/{{ $cont->magazine_id }}">Preview </a></button>
+                        <div class="d-flex mt-4 gap-3">
+                            <a class="btn btn-outline w-100" href="/preview/{{ $cont->magazine_id }}"
+                               target="_blank">Preview</a>
                         </div>
                     </div>
                 </div>

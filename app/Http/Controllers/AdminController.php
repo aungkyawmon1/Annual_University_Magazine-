@@ -61,12 +61,14 @@ class AdminController extends Controller
     {
 
         $closure_date = $request->closure_date;
+        $final_closure_date = $request->final_closure_date;
         $academic_year = $request->academic_year;
         $closure_date = Carbon::parse($closure_date)->format('Y-m-d H:i:s');
         DB::table('academic_years')
             ->where('academic_year_id', 1)
             ->update([
                 'closure_date' => $closure_date,
+                'final_closure_date' => $final_closure_date,
                 'academic_year' => $academic_year
             ]);
         return back()->withErrors([

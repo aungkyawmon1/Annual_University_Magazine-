@@ -62,21 +62,21 @@
         <div class="d-flex flex-row align-items-center justify-content-between">
 
 
-{{--            <ul class="nav nav-pills">--}}
-{{--                <li class="nav-item">--}}
-{{--                    --}}{{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'all']) }}">All</a>--}}
-{{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="#">All</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    --}}{{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'published']) }}">Published</a>--}}
-{{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="#">Published</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    --}}{{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'unpublished']) }}">Unpublished</a>--}}
-{{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="#">Unpublished</a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--the all published unpublished filter function is removed by zawwaisoe because of lack of time--}}
+            {{--            <ul class="nav nav-pills">--}}
+            {{--                <li class="nav-item">--}}
+            {{--                    --}}{{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'all']) }}">All</a>--}}
+            {{--                    <a class="nav-link {{ $filter == 'all' ? 'active' : '' }}" href="#">All</a>--}}
+            {{--                </li>--}}
+            {{--                <li class="nav-item">--}}
+            {{--                    --}}{{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'published']) }}">Published</a>--}}
+            {{--                    <a class="nav-link {{ $filter == 'published' ? 'active' : '' }}" href="#">Published</a>--}}
+            {{--                </li>--}}
+            {{--                <li class="nav-item">--}}
+            {{--                    --}}{{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="{{ route('coordinator.showContributions', ['filter' => 'unpublished']) }}">Unpublished</a>--}}
+            {{--                    <a class="nav-link {{ $filter == 'unpublished' ? 'active' : '' }}" href="#">Unpublished</a>--}}
+            {{--                </li>--}}
+            {{--            </ul>--}}
+            {{--the all published unpublished filter function is removed by zawwaisoe because of lack of time--}}
 
             <div class="d-flex gap-3">
                 <span>{{ $studentCount }} Students</span>
@@ -95,23 +95,20 @@
                     <th scope="col">Student name</th>
                     <th scope="col">Last uploaded</th>
                     <th scope="col">Status</th>
-{{--                    <th scope="col">Comments</th>--}}
-                    <th scope="col"> </th>
+                    {{--                    <th scope="col">Comments</th>--}}
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($magazines as $index => $magazine)
-                    <tr>
+                    <tr style="cursor: pointer;"
+                        onclick="window.location='{{ route('coordinator.student.detail', ['magazineId' => $magazine->magazine_id]) }}';">
                         <th scope="row">{{ $index + 1 }}</th>
                         <td>{{ $magazine->user->first_name }} {{ $magazine->user->last_name }}</td>
                         <td>{{ $magazine->updated_at->format('d M Y') }}</td>
                         <td>{{ $magazine->is_published ? 'Published' : 'Unpublished' }}</td>
-{{--                        <td>{{ $magazine->comment_count }} views</td>--}}
                         <td class="text-end">
-                            <a href="{{ route('coordinator.student.detail', ['magazineId' => $magazine->magazine_id]) }}">
-                                <img src="{{ asset('img/arrow-right.svg') }}" alt="arrow-right">
-                            </a>
-
+                            <img src="{{ asset('img/arrow-right.svg') }}" alt="arrow-right">
                         </td>
                     </tr>
                 @endforeach

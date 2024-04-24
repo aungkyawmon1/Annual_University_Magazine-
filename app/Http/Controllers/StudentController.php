@@ -49,6 +49,35 @@ class StudentController extends Controller
         ]);
     }
 
+    public function updateMagazine (Request $request) {
+
+        $file = $request->file('img_file');
+        $file1 = $request->file('doc_file');
+        $user_id = auth()->user()->id;
+        $department_id = auth()->user()->department_id;
+        $filename = $file->getClientOriginalName();
+        $filename1 = $file1->getClientOriginalName();
+        $file->storeAs('public/uploads', $filename);
+        $file->storeAs('public/uploads', $filename1);
+        $title = 'Welcome to University Magazine';
+        $body = 'Please check your account. you have new contribution in your department!';
+
+        $coordinator = DB::table('users')
+            ->select('*')
+            ->where('department_id', $department_id)
+            ->where('role_id', 3)
+            //->where('password', Hash::make($request->password))
+            ->get()->first;
+            //dd($coordinator);
+
+        //User::where("id", $request->id)->first()->update(array('username'=>$request->username, 'phone_no'=>$request->phone_no, 'address'=>$request->address));
+        Magazine::where("magazine_id", $request->id)->first()->update(array('title'=>$request->title, 'file_url'=> $filename1, 'image_url'=>$filename));
+        //Mail::to($coordinator->email)->send(new PushMail($title, $body));
+        return back()->withErrors([
+            'success' => 'Your article have successfully updated.',
+        ]);
+    }
+
     public function download($filename) {
         $name = $filename;
         $file = $file = public_path('storage/uploads/'.$filename);

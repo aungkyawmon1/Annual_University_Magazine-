@@ -26,60 +26,71 @@
     <h3 class="mt-3">Magazine contribution for 2023-2024 Academic Year</h3>
 
     <div class="alert alert-danger d-flex justify-content-between align-items-center mt-4" role="alert">
-            <div class="d-flex gap-2">
+        <div class="d-flex gap-2">
             <img src="{{ asset('img/alert-circle.svg') }}" alt="icon"/>
-                <div>
+            <div>
 
-                  Closure date is <strong> {{ date('d F, Y', strtotime($currentAcademicYear->closure_date)) }}</strong>
-                </div>
+                Closure date is <strong> {{ date('d F, Y', strtotime($currentAcademicYear->closure_date)) }}</strong>
             </div>
-           <div data-bs-toggle="modal" data-bs-target="#create_event">
-                <button type="button" class="btn btn-sm btn-outline text-black d-flex align-items-center gap-1">
-                    <img src="{{ asset('img/resize.png') }}" alt="icon" /> Edit
-                </button>
-           </div>
         </div>
+        <div data-bs-toggle="modal" data-bs-target="#create_event">
+            <button type="button" class="btn btn-sm btn-outline text-black d-flex align-items-center gap-1">
+                <img src="{{ asset('img/resize.png') }}" alt="icon" width="24px"  height="24px"/> Edit
+            </button>
+        </div>
+    </div>
 
-        <!-- Update event modal -->
+    <!-- Update event modal -->
     <form action="{{ route('edit') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="modal fade" id="create_event" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-content">
+                    <div class="modal-header">
 
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Update event</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label>Choose closure date</label>
-                    <br>
-                    <div class="mb-3">
-                        <input name="closure_date" type="datetime-local" class="form-control" id="event-closure-date" placeholder="Choose event closure date">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update event</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <label>Academic Year</label>
-                    <br>
-                    <div class="mb-3">
-                        <!-- <label for="article-caption" class="form-label">Caption</label> -->
-                        <input name="academic_year" type="text" class="form-control" id="academic-year" placeholder="Academic year">
+                    <div class="modal-body">
+                        <label>Choose closure date</label>
+                        <br>
+                        <div class="mb-3">
+                            <input name="closure_date" type="datetime-local" class="form-control"
+                                   id="event-closure-date" placeholder="Choose event closure date">
+                        </div>
+                        {{--                    Final Closure date--}}
+                        <label>Choose final closure date</label>
+                        <br>
+                        <div class="mb-3">
+                            <input name="final_closure_date" type="datetime-local" class="form-control"
+                                   id="event-final-closure-date" placeholder="Choose event final closure date">
+                        </div>
+                        {{--                    Academic Year--}}
+                        <label>Academic Year</label>
+                        <br>
+                        <div class="mb-3">
+                            <!-- <label for="article-caption" class="form-label">Caption</label> -->
+                            <input name="academic_year" type="text" class="form-control" id="academic-year"
+                                   placeholder="Academic year">
+                        </div>
+                        <div class="form-check form-check-inline mb-3">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                                   required>
+                            <a href="{{ url('/terms') }}" target="_blank">
+                                <label class="form-check-label" for="unassociatedLabel">Agree <span class="blue-600">terms & conditions</span></label>
+                            </a>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline mb-3">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" required>
-                        <label class="form-check-label" for="inlineCheckbox1">Agree <span class="blue-600">terms & conditions</span></label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
-            </div>
             </div>
         </div>
     </form>
     <div class="row mt-4">
         <h5 class="mb-3">Published contributions</h5>
-
-
 
 
         @if (count($magazines) > 0)
@@ -100,8 +111,10 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
-{{--                            <button onclick="window.location('student.preview-pdf')" type="button" class="btn btn-outline w-100">Preview</button>--}}
-                            <button onclick="window.open('/preview/{{$magazine->magazine_id}}', '_blank')" type="button" class="btn btn-outline w-100">Preview</button>
+                            {{--                            <button onclick="window.location('student.preview-pdf')" type="button" class="btn btn-outline w-100">Preview</button>--}}
+                            <button onclick="window.open('/preview/{{$magazine->magazine_id}}', '_blank')" type="button"
+                                    class="btn btn-outline w-100">Preview
+                            </button>
 
                         </div>
                     </div>
@@ -112,7 +125,6 @@
         @endif
     </div>
 </div>
-
 
 
 <!-- js -->
