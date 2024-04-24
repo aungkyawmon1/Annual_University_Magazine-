@@ -69,6 +69,9 @@ php artisan serve
 
 9. Open the browser and go to `http://localhost:8000` to view the project
 
+10. Database is db-university-magazine.sql
+
+11. import the database in localhost/phpmyadmin
 For checking out our project, please visit the link below:
 https://university-magazine-group-8.click/
 
