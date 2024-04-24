@@ -35,7 +35,7 @@
         </div>
         <div data-bs-toggle="modal" data-bs-target="#create_event">
             <button type="button" class="btn btn-sm btn-outline text-black d-flex align-items-center gap-1">
-                <img src="{{ asset('img/resize.png') }}" alt="icon"/> Edit
+                <img src="{{ asset('img/resize.png') }}" alt="icon" width="24px"  height="24px"/> Edit
             </button>
         </div>
     </div>

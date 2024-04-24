@@ -36,18 +36,15 @@
     $finalClosureDateTime = \Carbon\Carbon::parse($currentAcademicYear->final_closure_date);
 @endphp
 
-    <?php
-    echo $currentDateTime;
-    echo "<br>";
-    echo $finalClosureDateTime;
-    ?>
 @if($currentDateTime->greaterThanOrEqualTo($finalClosureDateTime))
-    <div class="alert alert-success mt-4" role="alert">
+<div class="alert alert-success mt-4 d-flex align-items-center justify-content-between" role="alert">
+    <div>
         The final closure date has passed. You can now download all submissions.
-        <a href="{{ route('manager.downloadFinalSubmissions') }}" class="btn btn-primary">
-            Download All Submissions
-        </a>
     </div>
+    <a href="{{ route('manager.downloadFinalSubmissions') }}" class="btn btn-primary ms-auto">
+        Download All Submissions
+    </a>
+</div>
 @endif
 
 
@@ -68,7 +65,8 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-2 gap-3">
-                            <button type="button" class="btn btn-outline w-50">Preview</button>
+                            <a class="btn btn-outline w-50" href="/preview/{{ $magazine->magazine_id }}"
+                               target="_blank">Preview</a>
                             <a href="{{ asset('storage/uploads/'.$magazine->image_url) }}" download> </a>
                             <a  class="btn btn-primary w-50" href="{{ asset('storage/uploads/'.$magazine->file_url) }}" download class="btn btn-primary w-50">
                                 Download

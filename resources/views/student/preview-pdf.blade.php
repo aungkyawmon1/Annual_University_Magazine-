@@ -38,18 +38,15 @@
 
 
 
-
-
-
-
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script src="{{ asset('dist/pspdfkit.js') }}"></script>
     <script>
         PSPDFKit.load({
-            licenseKey: '5c-CTDxZCVH0Mdt5p0qv1AM1JAt3Z5g_R50JXxo-oipYbpN_6oLWZhqdeTwrnWK54vzPmhrL-WHKPxuaBatUBuacyOumrQOdc7aLnh0zkUGWQNns1Enshq8-hTLHNwSwBYjnckUTqQzqtYb8aWvXCFI7qRg5jTzlu3iPslqagkM7mNDsbzDsszKh_VAYxpJtkurPIyECcOVqxg',
+            licenseKey: 'joYeueE_MmuEfMFKj7orTJpufmSbC-Jwv1MLHgm8SJ3-F7P1pKi0gFXW0W695K8rFp0WbifTQ2xObaEaHjqfAFsXy1pZIA0XUasDhDFX_iFwIJv1UlKZG_w1qVDYZcXFbfDWyFi5dHsN7qd91o2Dy7K8RiVtQaLqGIXcHIWsPs9BeWp1DYxElogemzBYlkgI1MFb7mlQ9ghtOZc',
             container: '#pspdfkit',
+
             document: "{{ asset('storage/uploads/'.$magazine->file_url) }}", // Add the path to your document here.
             // disableToolbar: true,
             toolbarItems: [

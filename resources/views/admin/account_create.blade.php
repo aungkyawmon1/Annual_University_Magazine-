@@ -25,8 +25,8 @@
         <div class="row mt-4">
                 <div class="col-4 mb-4">
                     <div class="mt-5">
-                        <label for="article-caption" class="form-label">Username</label>
-                        <input name="username" type="text" class="form-control" id="article-caption" placeholder="Username or ID">
+                        <label for="article-caption" class="form-label">Email</label>
+                        <input name="username" type="text" class="form-control" id="article-caption" placeholder="Email">
                     </div>
                     <div class="mt-3">
                         <label for="article-caption" class="form-label">Password</label>
@@ -53,8 +53,8 @@
                         </select>
                     </div>
                     <div class="mt-3">
-                        <label for="article-caption" class="form-label">Email</label>
-                        <input name = "email" type="email" class="form-control" id="article-caption" placeholder="Email">
+                        <label for="article-caption" class="form-label">User Name</label>
+                        <input name = "email"  class="form-control" id="article-caption" placeholder="User Name or ID">
                     </div>
                 </div>
                 <div class="col-4">

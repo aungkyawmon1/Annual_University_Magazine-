@@ -50,6 +50,7 @@ class StudentController extends Controller
     }
 
     public function updateMagazine (Request $request) {
+
         $file = $request->file('img_file');
         $file1 = $request->file('doc_file');
         $user_id = auth()->user()->id;
@@ -70,7 +71,7 @@ class StudentController extends Controller
             //dd($coordinator);
 
         //User::where("id", $request->id)->first()->update(array('username'=>$request->username, 'phone_no'=>$request->phone_no, 'address'=>$request->address));
-        Magazine::where("id", $request->id)->first()->update(array('title'=>$request->title, 'file_url'=> $filename1, 'image_url'=>$filename));
+        Magazine::where("magazine_id", $request->id)->first()->update(array('title'=>$request->title, 'file_url'=> $filename1, 'image_url'=>$filename));
         //Mail::to($coordinator->email)->send(new PushMail($title, $body));
         return back()->withErrors([
             'success' => 'Your article have successfully updated.',

@@ -49,9 +49,9 @@ $links = [
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($currentUrl == 'guests') ? 'active' : ''; ?>" href="guests">Guests</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($currentUrl == 'accounts') ? 'active' : ''; ?>" href="accounts">Accounts</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link <?php echo ($currentUrl == 'accounts') ? 'active' : ''; ?>" href="accounts">Accounts</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($currentUrl == 'manager-report') ? 'active' : ''; ?>"
                            href="manager-report">Reports</a>
@@ -67,6 +67,20 @@ $links = [
                            href="{{ url('/dashboard') }}">Dashboard</a>
                     </li>
                 @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->role_id == "4")
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($currentUrl == 'magazine-preview') ? 'active' : ''; ?>"
+                           href="{{ url('/magazine-preview') }}">Contributions</a>
+                    </li>
+
+                @endif
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == "5")
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo ($currentUrl == 'guest-dashboard') ? 'active' : ''; ?>"
+                               href="{{ url('/guest-dashboard') }}">Contributions</a>
+                        </li>
+
+                    @endif
 
             </ul>
             <ul class="navbar-nav">
