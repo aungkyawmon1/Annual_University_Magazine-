@@ -1,7 +1,5 @@
 # University Magazine Project
 
-## ** Still Under development **
-
 ### Frontend
 
 - Bootstrap CSS
